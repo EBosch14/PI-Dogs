@@ -18,6 +18,6 @@ app.use(morgan("dev")); //Logger
 app.use(express.json()); //Parser function
 
 
-app.use("/dogs", routes);
+app.use("/", routes);
 
 module.exports = app;
