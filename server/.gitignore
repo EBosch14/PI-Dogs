@@ -19,6 +19,7 @@ npm-debug.log*
 
 # Archivo de configuración de entorno
 /.env
+package-lock.json
 
 # Archivos de configuración específicos de tu entorno de desarrollo local
 config/local.js
