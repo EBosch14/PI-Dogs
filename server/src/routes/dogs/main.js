@@ -9,6 +9,6 @@ const dogsRoutes = Router();
 dogsRoutes.use("/breeds", breedsRouter);
 dogsRoutes.use("/favorites", favoritesRouter);
 dogsRoutes.use("/upload", uploadRouter);
-dogsRoutes.use("/name", searchRouter);
+dogsRoutes.use("/search", searchRouter);
 
 module.exports = dogsRoutes;
