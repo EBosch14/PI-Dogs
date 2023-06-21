@@ -1,8 +1,9 @@
 require("dotenv").config();
-
+const { conn } = require("./src/db");
 const server = require("./src/app");
-const PORT = process.env.SV_PORT || 3001;
+const { SV_PORT } = process.env;
 
-server.listen(PORT, () => {
-  console.log(`Server listen on http://localhost:${PORT}/`);
+server.listen(SV_PORT, () => {
+  conn.sync({force:true})
+  console.log(`Server listen on http://localhost:${SV_PORT}/`);
 });
