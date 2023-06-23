@@ -1,4 +1,7 @@
-const fliterTemps = (dogs) => {
+const {getBreedsAPI} = require("../services/getBreedsAPI")
+
+const fliterTemps = async () => {
+  const dogs = await getBreedsAPI()
   const temps = dogs
     //returns an array with the temperaments separated and 
     //filters the dogs that do not have the property "temperaments"

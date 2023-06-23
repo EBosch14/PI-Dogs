@@ -1,13 +1,11 @@
-require("dotenv").config();
-const { API_URL } = process.env;
 const { Temperaments } = require("../db");
 const { createTempsDB } = require("../services/createTempsDB");
-const { getTempsFromAPI } = require("../services/getTempsFromAPI");
+const { fliterTemps } = require("../utils/filterTemps");
 
 const getAllTemps = async () => {
   try {
     //Get temperaments from API
-    const tempsAPI = await getTempsFromAPI(API_URL);
+    const tempsAPI = await fliterTemps();
     //collects all temperaments stored in DB
     const DBTemps = await Temperaments.findAll({
       attributes: ["name"],
@@ -24,7 +22,7 @@ const getAllTemps = async () => {
     //returns all temperaments from API
     return tempsAPI;
   } catch (error) {
-    throw new Error("Failed to get all temperaments. ", error);
+    throw new Error(error.message);
   }
 };
 
