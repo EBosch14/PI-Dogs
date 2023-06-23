@@ -1,20 +1,17 @@
 require("dotenv").config();
 const { Router } = require("express");
-const axios = require("axios");
-const { API_URL, API_KEY } = process.env;
+const { getBreeds } = require("../../controllers/getBreeds");
+const {getBreedDetail} = require("../../controllers/getBreedDetail")
 
 const breedsRouter = Router();
 
 breedsRouter.get("/", async (req, res) => {
+  //gets the breeds that match the query\
+  //if query is not provided returns all breedsget breeds
   const { search } = req.query;
   try {
-    if (!search) {
-      const { data } = await axios.get(`${API_URL}/breeds`);
-      res.status(200).json(data);
-    } else {
-      const { data } = await axios.get(`${API_URL}/breeds/search?q=${search}`);
-      res.status(200).json(data);
-    }
+    const result = await getBreeds(search)
+    res.status(200).json(result);
   } catch (error) {
     res.status(404).json({ error: error.message });
   }
@@ -23,8 +20,8 @@ breedsRouter.get("/", async (req, res) => {
 breedsRouter.get("/:id", async (req, res) => {
   const { id } = req.params;
   try {
-    const { data } = await axios.get(`${API_URL}/breeds/${id}`);
-    res.status(200).json(data);
+    const result = await getBreedDetail(id)
+    res.status(200).json(result);
   } catch (error) {
     res.status(404).json({ error: error.message });
   }

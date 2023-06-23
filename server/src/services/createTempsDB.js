@@ -1,3 +1,5 @@
+const {Temperaments} = require("../db")
+
 const createTempsDB = async (tempsAPI) => {
   //Insert a new instance of the model to the DB
   try {
