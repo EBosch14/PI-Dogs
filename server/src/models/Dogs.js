@@ -29,9 +29,6 @@ module.exports = (sequelize) => {
       life_span: {
         type: DataTypes.STRING,
         allowNull: false,
-        validate: {
-          min: 0,
-        },
       },
     },
     { timestamps: false }
