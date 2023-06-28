@@ -1,15 +1,17 @@
 const { Dogs, Temperaments } = require("../db");
+const { transformDataDB } = require("../utils/transformData");
 
 const getAllDogsDB = async () => {
   try {
     const allDogs = await Dogs.findAll({
       include: {
         model: Temperaments,
-        attributes: ["id", "name"],
+        attributes: ["name"],
         through: { attributes: [] },
       },
     });
-    return allDogs;
+    const result = transformDataDB(allDogs)
+    return result;
   } catch (error) {
     throw error;
   }
