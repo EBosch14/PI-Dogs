@@ -1,4 +1,5 @@
 const { Dogs, Temperaments } = require("../db");
+const { isValidUUIDv4 } = require("../utils/isValidUUID");
 const { transformDataDB } = require("../utils/transformData");
 
 const getAllDogsDB = async () => {
@@ -29,4 +30,26 @@ const getOneDog = async (name) => {
   }
 };
 
-module.exports = { getAllDogsDB, getOneDog };
+const getDogById = async (id) => {
+  try {
+    const isValid = isValidUUIDv4(id);
+    if (isValid) {
+      const foundDog = await Dogs.findOne({
+        where: {
+          id: id,
+        },
+        include: {
+          model: Temperaments,
+          attributes: ["name"],
+          through: { attributes: [] },
+        },
+      });
+      return foundDog ? transformDataDB(foundDog) : {};
+    }
+    return {};
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
+module.exports = { getAllDogsDB, getOneDog, getDogById };
