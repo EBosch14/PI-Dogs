@@ -3,22 +3,25 @@ const { Temperaments } = require("../db");
 
 const getAllTempsDB = async (temps = null) => {
   //collects all temperaments stored in DB
-  if (!temps){
-    const allTemps = await Temperaments.findAll();
-    const cleanTemps = allTemps.map((el) => el.dataValues.name);
-    return cleanTemps;
+  try {
+    if (!temps) {
+      const allTemps = await Temperaments.findAll();
+      const cleanTemps = allTemps.map((el) => el.dataValues.name);
+      return cleanTemps;
+    }
+    if (Array.isArray(temps)) {
+      const foundsTemps = await Temperaments.findAll({
+        where: {
+          name: {
+            [Op.or]: temps,
+          },
+        },
+      });
+      return foundsTemps;
+    }
+  } catch (error) {
+    throw new Error(error.message);
   }
-  if (Array.isArray(temps)){
-    const foundsTemps = await Temperaments.findAll({
-      where:{
-        name: {
-          [Op.or] : temps
-        }
-      }
-    })
-    return foundsTemps
-  }
-  throw new Error("getAllTempsDB: the parameter has to be an array.")
 };
 
 module.exports = { getAllTempsDB };

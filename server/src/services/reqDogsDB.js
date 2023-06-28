@@ -10,19 +10,23 @@ const getAllDogsDB = async () => {
         through: { attributes: [] },
       },
     });
-    const result = transformDataDB(allDogs)
+    const result = transformDataDB(allDogs);
     return result;
   } catch (error) {
-    throw error;
+    throw new Error(error.message);
   }
 };
 
 const getOneDog = async (name) => {
-  return await Dogs.findOne({
-    where: {
-      name: name,
-    },
-  });
+  try {
+    return await Dogs.findOne({
+      where: {
+        name: name,
+      },
+    });
+  } catch (error) {
+    throw new Error(error.message);
+  }
 };
 
 module.exports = { getAllDogsDB, getOneDog };

@@ -6,7 +6,7 @@ const createTempsDB = async (temps) => {
     const info = temps.map((temp) => ({ name: temp }));
     return await Temperaments.bulkCreate(info);
   } catch (error) {
-    throw new Error("Failed to create new temperaments in DB. ", error);
+    throw new Error("Failed to create new temperaments in DB. ", error.message);
   }
 };
 

@@ -7,7 +7,7 @@ const getAllBreedsAPI = async () => {
   //Gets all dog breeds registered in API
   try {
     const response = await axios.get(`${API_URL}/breeds`);
-    const result = transfromDataAPI(response.data)
+    const result = transfromDataAPI(response.data);
     return result;
   } catch (error) {
     throw new Error(error.message);
@@ -17,12 +17,8 @@ const getAllBreedsAPI = async () => {
 const getInputBreedAPI = async (search) => {
   //get all breed that match with query
   try {
-    const response = await axios.get(`${API_URL}/breeds/search`, {
-      params: {
-        q: search,
-      },
-    });
-    const result = transfromDataAPI(response.data)
+    const response = await axios.get(`${API_URL}/breeds/search?q=${search}`);
+    const result = transfromDataAPI(response.data);
     return result;
   } catch (error) {
     throw new Error(error.message);
@@ -33,7 +29,7 @@ const getBreedById = async (id) => {
   //gets breed that match with id
   try {
     const response = await axios.get(`${API_URL}/breeds/${id}`);
-    const result = transfromDataAPI(response.data)
+    const result = transfromDataAPI(response.data);
     return result;
   } catch (error) {
     throw new Error(error.message);

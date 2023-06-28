@@ -7,9 +7,9 @@ uploadRouter.post("/", async (req, res) => {
   const info = req.body;
   try {
     const result = await postDog(info);
-    res.status(200).json(result);
+    res.status(201).json(result);
   } catch (error) {
-    res.status(410).json({ error: error.message });
+    res.status(412).json({ error: error.message });
   }
 });
 

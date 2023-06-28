@@ -1,9 +1,12 @@
 const transfromDataAPI = (data) => {
-  if (Array.isArray(data)){
+  if (Array.isArray(data)) {
     const transformedData = data.map((breed) => ({
       ...breed,
       Temperaments: breed.temperament ? breed.temperament.split(", ") : [],
       temperament: undefined,
+      image: breed.image.url,
+      height: breed.height.metric,
+      weight: breed.weight.metric
     }));
     return transformedData;
   } else {
@@ -11,16 +14,16 @@ const transfromDataAPI = (data) => {
       ...data,
       Temperaments: data.temperament ? data.temperament.split(", ") : [],
       temperament: undefined,
-    }
+    };
   }
 };
 
 const transformDataDB = (data) => {
-  const transformedData = data.map(dog => ({
+  const transformedData = data.map((dog) => ({
     ...dog.toJSON(),
-    Temperaments: dog.Temperaments.map(temp => temp.name)
-  }))
-  return transformedData
-}
+    Temperaments: dog.Temperaments.map((temp) => temp.name),
+  }));
+  return transformedData;
+};
 
 module.exports = { transfromDataAPI, transformDataDB };

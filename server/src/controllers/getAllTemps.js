@@ -32,7 +32,7 @@ const getAllTemps = async () => {
     //returns all temperaments from DB
     return tempsDB;
   } catch (error) {
-    throw new Error(error.message);
+    throw error;
   }
 };
 

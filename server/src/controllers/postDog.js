@@ -9,7 +9,7 @@ const postDog = async (info) => {
       return dog;
     }
   } catch (error) {
-    throw new Error(error.message);
+    throw error;
   }
 };
 
