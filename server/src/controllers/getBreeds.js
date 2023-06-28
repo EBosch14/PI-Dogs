@@ -1,13 +1,18 @@
-const {getAllBreedsAPI, getInputBreedAPI} = require("../services/reqBreedsAPI")
+const {
+  getAllBreedsAPI,
+  getInputBreedAPI,
+} = require("../services/reqBreedsAPI");
+const { searchDogs } = require("../utils/searchDogs");
 
 const getBreeds = async (search) => {
   if (!search) {
-    return await getAllBreedsAPI()
+    return await getAllBreedsAPI();
   } else {
-    const breeds = await getInputBreedAPI(search)
-    if (!breeds.length) throw new Error(`No matches found for '${search}'`)
-    return breeds
+    const breedsAPI = await getInputBreedAPI(search);
+    const dogsDB = await searchDogs(search);
+    if (!breedsAPI.length && !dogsDB.length) throw new Error(`No matches found for '${search}'`)
+    return [...breedsAPI, ...dogsDB];
   }
-}
+};
 
-module.exports = {getBreeds}
+module.exports = { getBreeds };

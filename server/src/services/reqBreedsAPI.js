@@ -12,12 +12,12 @@ const getAllBreedsAPI = async () => {
   }
 };
 
-const getInputBreedAPI = async (name) => {
+const getInputBreedAPI = async (search) => {
   //get all breed that match with query
   try {
     const response = await axios.get(`${API_URL}/breeds/search`, {
       params: {
-        q: name,
+        q: search,
       },
     });
     return response.data;
@@ -36,4 +36,4 @@ const getBreedById = async (id) => {
   }
 };
 
-module.exports = { getAllBreedsAPI, getInputBreedAPI,getBreedById };
+module.exports = { getAllBreedsAPI, getInputBreedAPI, getBreedById };

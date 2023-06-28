@@ -1,19 +1,26 @@
-const { Dogs } = require("../db");
+const { Dogs, Temperaments } = require("../db");
 
-const getDogsDB = async (name = null) => {
-  if (!name) {
-    const allDogs = await Dogs.findAll();
-    return allDogs;
-  }
-  if(typeof name === 'string') {
-    const foundDog = await Dogs.findOne({
-      where: {
-        name: name,
+const getAllDogsDB = async () => {
+  try {
+    const allDogs = await Dogs.findAll({
+      include: {
+        model: Temperaments,
+        attributes: ["id", "name"],
+        through: { attributes: [] },
       },
     });
-    return foundDog;
+    return allDogs;
+  } catch (error) {
+    throw error;
   }
-  throw new Error("getDogsDB: the parameter has to be a string.")
 };
 
-module.exports = { getDogsDB };
+const getOneDog = async (name) => {
+  return await Dogs.findOne({
+    where: {
+      name: name,
+    },
+  });
+};
+
+module.exports = { getAllDogsDB, getOneDog };

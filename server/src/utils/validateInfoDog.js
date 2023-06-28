@@ -1,4 +1,4 @@
-const { getDogsDB } = require("../services/reqDogsDB");
+const { getOneDog } = require("../services/reqDogsDB");
 
 const validateInfo = async (info) => {
   const requiredFields = [
@@ -16,7 +16,7 @@ const validateInfo = async (info) => {
   if (missingData.length) {
     throw new Error(`Missing data: ${missingData.join(", ")}.`);
   }
-  const alreadyExist = await getDogsDB(info.name)
+  const alreadyExist = await getOneDog(info.name)
   if (!!alreadyExist) {
     throw new Error(`this name: '${info.name}' is alredy exists, please try another.`)
   }
