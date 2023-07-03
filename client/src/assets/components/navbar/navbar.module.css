@@ -1,7 +1,7 @@
 .navbar {
   width: 100%;
-  height: 6rem;
-  background-color: var(--green-pastel);
+  height: 15vh;
+  background-color: var(--dblue-pastel);
   display: flex;
   justify-content: space-evenly;
   align-items: center;
@@ -19,8 +19,16 @@
   padding:.4rem;
   display: inline-block;
   border: none;
-  border-bottom: 2px solid var(--text-color);
+  border-bottom: 2px solid var(--white-pastel);
   background: transparent;
+  color: var(--white-pastel);
+  font-weight: 600;
+  letter-spacing: .05em;
+
+}
+
+.search .input::selection{
+  background-color: var(--text-color-light);
 }
 
 .search .input:focus {
@@ -29,10 +37,28 @@
 
 .search .label {
   text-transform: uppercase;
-  color: var(--text-color);
+  color: var(--white-pastel);
   letter-spacing: .05em;
-  font-size: 1.1em;
-  font-weight: 600;
+  font-size: 1.2em;
+  font-weight: 700;
   pointer-events: none;
   margin-left: .5rem;
+}
+
+.link{
+  background-color: var(--pink-pastel);
+  padding: 1.1rem;
+  border-radius: 1.7rem;
+  color: var(--white-pastel);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 1.1em;
+  box-shadow: 6px 7px 0px 0px rgba(90, 90, 90, 0.2);
+  transition: all 150ms ease;
+  letter-spacing: .1em;
+}
+
+.link:active{
+  transform: translate(5px, 5px);
+  box-shadow: none
 }

@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import s from "./landing.module.css";
 import { useState } from "react";
 
-export default function LandigPage(props) {
+export default function LandigPage() {
   const images = [
     "https://img.freepik.com/foto-gratis/retrato-mascota-adorable-aislado_23-2149192357.jpg?w=1380&t=st=1688074368~exp=1688074968~hmac=f5356776478212a3992619595c55d81afb5be56d77576c3e5bb9e672be10756a",
     "https://img.freepik.com/foto-gratis/adorable-perro-basenji-marron-blanco-sonriendo-dando-maximo-cinco-aislado-blanco_346278-1657.jpg?size=626&ext=jpg&uid=R79611226&semt=sph",
@@ -57,7 +57,7 @@ export default function LandigPage(props) {
               quas et vitae minima excepturi.
             </p>
           </div>
-          <Link to="/home" className={s.button} onClick={props.validateLogin}>
+          <Link to="/home" className={s.button}>
             Come On!
           </Link>
         </div>

@@ -1,0 +1,49 @@
+.container{
+  height: 85vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.title{
+  margin: 4rem 0 2.5rem;
+  font-size: 3.5em;
+  font-weight: 700;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  color: var(--text-color);
+}
+
+.title svg{
+  font-size: 1.3em
+}
+
+.backLink{
+  text-transform: uppercase;
+  font-size: 1.5em;
+  display: flex;
+  align-items: center;
+  gap: .2rem;
+  background-color: var(--white-pastel);
+  padding: 1rem;
+  border-radius: .5rem;
+}
+
+.backLink svg{
+  position: relative;
+  top: 2px;
+  font-size: 1.5em;
+}
+
+.imgContainer{
+  width: 45rem;
+}
+
+.imgContainer img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
