@@ -9,7 +9,7 @@ export default function NotFoundPage() {
       <div className={s.title}>
         <TbMoodSadDizzy /> Page not found <TbMoodSadDizzy />
       </div>
-      <Link to="/home" className={s.backLink}>
+      <Link to="/home" className="backToHomeLink">
         <IoMdArrowRoundBack />
         {"Back to Home"}
       </Link>

@@ -21,7 +21,7 @@
   font-size: 1.3em
 }
 
-.backLink{
+/* .backToHomeLink{
   text-transform: uppercase;
   font-size: 1.5em;
   display: flex;
@@ -30,7 +30,7 @@
   background-color: var(--white-pastel);
   padding: 1rem;
   border-radius: .5rem;
-}
+} */
 
 .backLink svg{
   position: relative;

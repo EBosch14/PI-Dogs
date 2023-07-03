@@ -7,7 +7,7 @@
   --wblue-pastel: #b3e5fc;
   --dblue-pastel: #7ca4d4;
   --pink-pastel: #f8bbd0;
-  --green-pastel: #c8e6c9;
+  --green-pastel: #9ADBA8;
   --yellow-pastel: #fff9c4;
   --white-pastel: #fdfdfd;
   --text-color: #333333;
@@ -40,4 +40,15 @@ a {
 
 body {
   background-color: var(--wblue-pastel);
+}
+
+.backToHomeLink{
+  text-transform: uppercase;
+  font-size: 1.5em;
+  display: flex;
+  align-items: center;
+  gap: .2rem;
+  background-color: var(--white-pastel);
+  padding: 1rem;
+  border-radius: .5rem;
 }
