@@ -1,0 +1,26 @@
+.container{
+  background-image: url("https://img.freepik.com/foto-gratis/retrato-grupo-adorables-cachorros_53876-64778.jpg?t=st=1688414467~exp=1688415067~hmac=6110055f64182b914ad3a87a7cbb0380147b9599ae55f24dddf66c01396fc0b8");
+  height: 72.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+}
+
+.formContainer{
+  margin: 4rem 0;
+  width: 40rem;
+  height: auto;
+  background-color: var(--wblue-pastel);
+  border-radius: 20px;
+  padding: 2rem 2.5rem;
+}
+
+.title{
+  color: var(--yellow-pastel);
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 800;
+  font-size: 2.5em;
+  letter-spacing: .1em;
+}
