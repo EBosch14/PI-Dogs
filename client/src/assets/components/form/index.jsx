@@ -2,7 +2,6 @@ import s from "./form.module.css";
 import { BsUpload } from "react-icons/bs";
 
 export default function CustomForm() {
-  
   const handleSumbit = (event) => {
     event.preventDefault()
   }
