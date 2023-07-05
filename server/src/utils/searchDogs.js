@@ -4,10 +4,13 @@ const { getAllDogsDB } = require("../services/reqDogsDB");
 const searchDogs = async (search) => {
   try {
     const allDogs = await getAllDogsDB();
-    const matchedDogs = allDogs.filter((dog) =>
-      dog.name.toLowerCase().includes(search.toLowerCase())
-    );
-    return matchedDogs;
+    if(allDogs.length) {
+      const matchedDogs = allDogs.filter((dog) =>
+        dog.name.toLowerCase().includes(search.toLowerCase())
+      );
+      return matchedDogs;
+    }
+    return []
   } catch (error) {
     throw error;
   }
@@ -28,8 +31,9 @@ const searchBreeds = async (search) => {
 const getBreedById = async (id) => {
   try {
     const allBreeds = await getAllBreedsAPI();
-    const foundBreed = allBreeds.filter(breed => (breed.id == id))
-    return foundBreed
+    const foundBreed = allBreeds.find(el => el.id == id)
+    if (foundBreed) return foundBreed
+    return {}
   } catch (error) {
     throw error;
   }
