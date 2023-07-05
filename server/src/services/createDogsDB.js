@@ -13,8 +13,8 @@ const createDogsDB = async ({
     const dog = await Dogs.create({
       name,
       image,
-      height,
-      weight,
+      height: `${height} cm`,
+      weight: `${weight} kg`,
       life_span: lifeSpan,
     });
     //associating temperaments with dogs

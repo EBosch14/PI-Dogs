@@ -7,11 +7,13 @@
   --wblue-pastel: #b3e5fc;
   --dblue-pastel: #7ca4d4;
   --pink-pastel: #f8bbd0;
-  --green-pastel: #9ADBA8;
+  --green-pastel: #9adba8;
   --yellow-pastel: #fff9c4;
   --white-pastel: #fdfdfd;
   --text-color: #333333;
   --text-color-light: #33333355;
+  --disabled-text: #666666;
+  --disabled-bg: #cccccc;
 
   color: var(--text-color);
   font-synthesis: none;
@@ -28,15 +30,14 @@
   margin: 0;
   padding: 0;
   list-style: none;
-  
 }
 
-* input[type='number'] {
+* input[type="number"] {
   -moz-appearance: textfield;
 }
 
-* input[type='number']::-webkit-outer-spin-button,
-* input[type='number']::-webkit-inner-spin-button {
+* input[type="number"]::-webkit-outer-spin-button,
+* input[type="number"]::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
@@ -54,13 +55,13 @@ body {
   background-color: var(--wblue-pastel);
 }
 
-.backToHomeLink{
+.backToHomeLink {
   text-transform: uppercase;
   font-size: 1.5em;
   display: flex;
   align-items: center;
-  gap: .2rem;
+  gap: 0.2rem;
   background-color: var(--white-pastel);
   padding: 1rem;
-  border-radius: .5rem;
+  border-radius: 0.5rem;
 }

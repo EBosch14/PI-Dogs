@@ -5,45 +5,27 @@ import { BsUpload } from "react-icons/bs";
 export default function CustomImageUpload({
   label,
   name,
-  selectedFile,
   onChange,
-  handleErrors,
+  inputs,
+  errors,
+  deleteImage
 }) {
   const fileInputRef = useRef(null);
 
   const handleClick = () => {
-    selectedFile.name === "" && fileInputRef.current.click();
-  };
-
-  const handleFileChange = (event) => {
-    const file = event.target.files[0];
-    const fileType = file.type;
-    const fileName = file.name;
-    const fileImage = URL.createObjectURL(file);
-    const allowedTypes = ["image/png", "image/jpeg"];
-    if (file) {
-      if (allowedTypes.includes(fileType)) {
-        onChange(fileName, fileImage);
-      } else {
-        const error =
-          "Document format not allowed (only .PNG or .JPG is accepted)";
-        handleErrors(name, error);
-      }
-    } else {
-      onChange();
-    }
+    inputs.image === "" && fileInputRef.current.click();
   };
 
   return (
     <div className={s[name]}>
       <label htmlFor="">{label}</label>
       <div className={s.uploadFile} onClick={handleClick}>
-        {!selectedFile.name ? (
+        {!inputs.image ? (
           <BsUpload />
         ) : (
           <img
-            src={selectedFile.image}
-            alt={selectedFile.name}
+            src={inputs.image}
+            alt={inputs.name}
             className={s.selectedImage}
           />
         )}
@@ -54,12 +36,16 @@ export default function CustomImageUpload({
         name={name}
         id={name}
         accept=".jpg, .png"
-        onChange={handleFileChange}
+        onChange={onChange}
+        hidden
       />
-      {selectedFile.name && (
-        <button className={s.deleteImageBtn} onClick={() => onChange()}>
+      {inputs.image && (
+        <button className={s.deleteImageBtn} onClick={deleteImage}>
           Delete image
         </button>
+      )}
+      {errors.image !== "" && (
+        <span className={s.errorMsg}>{errors.image}</span>
       )}
     </div>
   );

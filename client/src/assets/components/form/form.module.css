@@ -22,7 +22,7 @@
   transition: transform .3s ease;
 }
 
-.form .sumbitBtn:hover{
+.form .sumbitBtn:enabled:hover{
   transform: scale(1.1);
 }
 
@@ -30,3 +30,8 @@
   transform: scale(1);
 }
 
+.form .sumbitBtn:disabled{
+  color: var(--disabled-text);
+  background-color: var(--disabled-bg);
+  cursor: not-allowed;
+}

@@ -37,3 +37,12 @@
 .height input, .weight input, .lifeSpan input {
   width: 5rem;
 }
+
+span.errorMsg{
+  color: #d30000;
+  font-weight: 500;
+  font-size: .7em;
+  display: block;
+  margin-top: .5rem;
+  margin-left: 0;
+}

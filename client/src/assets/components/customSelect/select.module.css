@@ -57,7 +57,7 @@
 
 .temperaments .selectedOptions{
   width: 100%;
-  margin-top: 1rem;
+  margin-top: .5rem;
   display: flex;
   flex-wrap: nowrap;
   overflow-x: auto;
@@ -87,4 +87,12 @@
 
 .temperaments label {
   font-weight: 500;
+}
+
+span.errorMsg {
+  color: #d30000;
+  font-weight: 500;
+  font-size: 0.7em;
+  align-self: center;
+  display: block;
 }

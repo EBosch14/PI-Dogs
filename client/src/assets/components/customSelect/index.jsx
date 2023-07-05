@@ -3,7 +3,7 @@ import s from "./select.module.css";
 import { AiFillCaretDown } from "react-icons/ai";
 import { RxCross2 } from "react-icons/rx";
 
-export default function SelectTempField({ label, name }) {
+export default function SelectTempField({ label, name, handleSelect, errors, selectedOptions, setSelectedOptions }) {
   const temperaments = [
     "Stubborn",
     "Curious",
@@ -33,7 +33,15 @@ export default function SelectTempField({ label, name }) {
     "Receptive",
   ];
 
-  const [selectedOptions, setSelectedOptions] = useState([]);
+  useEffect(() => {
+    handleSelect(selectedOptions);
+  }, [selectedOptions]);
+
+  const addOption = (temp) => {
+    // setSelectedOptions((prevSelected) => [...new Set([...prevSelected, temp])]);
+    if (!selectedOptions.find((opt) => opt === temp))
+      setSelectedOptions((prevState) => [...prevState, temp]);
+  };
 
   const deleteOption = (opt) => {
     setSelectedOptions((prevState) => prevState.filter((el) => el !== opt));
@@ -42,22 +50,24 @@ export default function SelectTempField({ label, name }) {
   return (
     <div className={s[name]}>
       <label htmlFor={name}>{label}</label>
-      <CustomSelect
-        setSelectedOptions={setSelectedOptions}
-        temperaments={temperaments}
-      />
-      <div className={s.selectedOptions}>
-        {selectedOptions.map((opt, i) => (
-          <span className={s.option} key={opt + i}>
-            {opt} <RxCross2 onClick={() => deleteOption(opt)} />
-          </span>
-        ))}
-      </div>
+      <CustomSelect temperaments={temperaments} addOption={addOption} />
+      {selectedOptions.length > 0 && (
+        <div className={s.selectedOptions}>
+          {selectedOptions.map((opt, i) => (
+            <span className={s.option} key={opt + i}>
+              {opt} <RxCross2 onClick={() => deleteOption(opt)} />
+            </span>
+          ))}
+        </div>
+      )}
+      {errors.temperaments !== "" && (
+        <span className={s.errorMsg}>{errors.temperaments}</span>
+      )}
     </div>
   );
 }
 
-function CustomSelect({ setSelectedOptions, temperaments }) {
+function CustomSelect({ temperaments, addOption }) {
   const [isOpen, setIsOpen] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
   const [search, setSearch] = useState("");
@@ -68,7 +78,7 @@ function CustomSelect({ setSelectedOptions, temperaments }) {
   };
 
   const options = temperaments.filter((el) =>
-    el.toLowerCase().includes(search.toLowerCase())
+    el.toLowerCase().includes(search.toLowerCase()),
   );
 
   const handleSelectClick = () => {
@@ -76,7 +86,7 @@ function CustomSelect({ setSelectedOptions, temperaments }) {
   };
 
   const handleOptionClick = (temp) => {
-    setSelectedOptions((prevSelected) => [...new Set([...prevSelected, temp])]);
+    addOption(temp);
     setSearch("");
     setIsOpen(false);
   };
