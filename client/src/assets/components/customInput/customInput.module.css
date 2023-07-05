@@ -1,0 +1,39 @@
+.fields {
+  height: 115px;
+}
+
+.fields > span {
+  font-size: .8em;
+  margin-left: .5rem;
+}
+
+.fields > label {
+  display: block;
+  margin-bottom: 0.1rem;
+  font-weight: 500;
+  letter-spacing: .03em;
+}
+
+.fields > input {
+  width: 100%;
+  padding: 1rem .2rem .2rem .5rem;
+  border: none;
+  border-bottom: 1px solid var(--text-color);
+  font-size: .8em;
+  background-color: transparent;
+  color: var(--text-color);
+  transition: border .1s ease;
+}
+
+.fields > input:focus {
+  outline: none;
+  border-bottom: 3px solid var(--text-color);
+}
+
+.name input {
+  width: 85%;
+}
+
+.height input, .weight input, .lifeSpan input {
+  width: 5rem;
+}

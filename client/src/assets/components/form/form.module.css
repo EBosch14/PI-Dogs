@@ -8,87 +8,6 @@
   row-gap: 1rem;
 }
 
-.form .fields {
-  height: 115px;
-}
-
-.form .fields > span {
-  font-size: .8em;
-  margin-left: .5rem;
-}
-
-.form .fields > label {
-  display: block;
-  margin-bottom: 0.1rem;
-  font-weight: 500;
-  letter-spacing: .03em;
-}
-
-.form .fields > input {
-  width: 100%;
-  padding: 1rem .2rem .2rem .5rem;
-  border: none;
-  border-bottom: 1px solid var(--text-color);
-  font-size: .8em;
-  background-color: transparent;
-  color: var(--text-color);
-  transition: border .1s ease;
-}
-
-.form .fields > input:focus {
-  outline: none;
-  border-bottom: 3px solid var(--text-color);
-}
-
-.form .temperaments label, .form .image label {
-  font-weight: 500;
-}
-
-.form .temperaments{
-  grid-column: 1/3;
-  height: 100px;
-}
-
-.form .temperaments select{
-  margin-left: 1rem;
-  font-size: .8em;
-  width: 13rem;
-  height: 36px;
-  border: none;
-  background-color: var(--yellow-pastel);
-}
-
-.form .image{
-  grid-column: 1/3;
-  width: 100%;
-  height: 330px;
-  display: flex;
-  flex-direction: column;
-}
-
-.form .image input{
-  display: none;
-}
-
-.form .image .uploadFile{
-  margin: 1rem 0 .5rem;
-  aspect-ratio: 4/3;
-  width: 20rem;
-  font-size: 1.2em;
-  align-self: center;
-  border: 5px dashed var(--yellow-pastel);
-  background-color: #ffffff3b;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-}
-
-.form .image .uploadFile svg{
-  font-size: 2em;
-  color: var(--yellow-pastel);
-}
-
 .form .sumbitBtn{
   grid-column: 1/3;
   justify-self: center;
@@ -111,20 +30,3 @@
   transform: scale(1);
 }
 
-.form .name input {
-  width: 85%;
-}
-
-.form .height input, .form .weight input, .form .lifeSpan input {
-  width: 5rem;
-}
-
-.form .fields input[type='number'] {
-  -moz-appearance: textfield;
-}
-
-.form .fields input[type='number']::-webkit-outer-spin-button,
-.form .fields input[type='number']::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}

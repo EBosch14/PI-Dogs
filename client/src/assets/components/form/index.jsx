@@ -1,67 +1,77 @@
 import s from "./form.module.css";
-import { BsUpload } from "react-icons/bs";
+import { useState } from "react";
+import CustomInput from "../customInput";
+import SelectTempField from "../customSelect";
+import CustomImageUpload from "../customImageUpload";
 
 export default function CustomForm() {
+  //const [selectedOptions, setSelectedOptions] = useState([]);
+  const [selectedFile, setSelectedFile] = useState({
+    name: "",
+    image: "",
+  });
+  const [errors, setErrors] = useState({
+    name: "",
+    temperaments: "",
+    image: "",
+  });
   const handleSumbit = (event) => {
-    event.preventDefault()
-  }
+    event.preventDefault();
+  };
+
+  const handleInput = () => {};
+
+  const handleErrors = (name, error) => {
+    setErrors((prevState) => ({
+      ...prevState,
+      [name]: error,
+    }));
+  };
+
+  const handleInputFileChange = (fileName = "", fileImage = "") => {
+    setSelectedFile({
+      name: fileName,
+      image: fileImage,
+    });
+  };
 
   return (
     <form className={s.form} onSubmit={handleSumbit}>
-      <div className={`${s.fields} ${s.name}`}>
-        <label htmlFor="name">Choose the name</label>
-        <input autoComplete="none" id={s.name} type="text" name="name" />
-      </div>
-      <div className={`${s.fields} ${s.lifeSpan}`}>
-        <label htmlFor="lifeSpan">How old will be?</label>
-        <input
-          autoComplete="none"
-          type="number"
-          name="lifeSpan"
-          id="lifeSpan"
-          min={1}
-        />
-        <span>years</span>
-      </div>
-      <div className={`${s.fields} ${s.height}`}>
-        <label htmlFor="height">Give it a height</label>
-        <input
-          autoComplete="none"
-          type="number"
-          name="height"
-          id="height"
-          min={1}
-        />
-        <span>cm</span>
-      </div>
-      <div className={`${s.fields} ${s.weight}`}>
-        <label htmlFor="weight">How heavy will it be?</label>
-        <input
-          autoComplete="none"
-          type="number"
-          name="weight"
-          id="weight"
-          min={1}
-        />
-        <span>kg</span>
-      </div>
-      <div className={s.temperaments}>
-        <label htmlFor="temperaments">How will your dog be</label>
-        <select name="temperaments" id="temperaments">
-          <option value="a">a</option>
-          <option value="b">b</option>
-          <option value="c">c</option>
-          <option value="d">d</option>
-          <option value="e">e</option>
-        </select>
-      </div>
-      <div className={s.image}>
-        <label htmlFor="image">Show us a picture of your dog</label>
-        <div className={s.uploadFile}>
-          <BsUpload />
-        </div>
-        <input type="file" name="image" id="image" accept=".jpg, .png" />
-      </div>
+      <CustomInput
+        label={"Choose the name"}
+        name={"name"}
+        type={"text"}
+        onChange={handleInput}
+      />
+      <CustomInput
+        label={"How old will be?"}
+        name={"lifeSpan"}
+        type={"number"}
+        onChange={handleInput}
+        span={"years"}
+      />
+      <CustomInput
+        label={"Give it a height"}
+        name={"height"}
+        type={"number"}
+        onChange={handleInput}
+        span={"cm"}
+      />
+      <CustomInput
+        label={"How heavy will it be?"}
+        name={"weight"}
+        type={"number"}
+        onChange={handleInput}
+        span={"kg"}
+      />
+      <SelectTempField label={"How will your dog be"} name={"temperaments"} />
+      <CustomImageUpload
+        label={"Show us a picture of your dog"}
+        name={"image"}
+        onChange={handleInputFileChange}
+        handleErrors={handleErrors}
+        selectedFile={selectedFile}
+      />
       <button className={s.sumbitBtn} type="submit">
         CREATE!
       </button>
