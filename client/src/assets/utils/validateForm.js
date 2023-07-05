@@ -15,24 +15,63 @@ const namesExists = [
   },
 ];
 
-export function validateForm(inputs) {
+export function validateForm(inputs, firstInputs) {
   const errors = {};
   const alreadyExist = namesExists.find(
     (el) => el.name.toLowerCase() === inputs.name.toLowerCase().trim(),
   );
 
-  if (inputs.lifeSpan !== "" && !numberPositive.test(inputs.lifeSpan))
+  //LifeSpan validations
+  if (firstInputs.current.lifeSpan) {
+    firstInputs.current.lifeSpan = inputs.lifeSpan === "";
+  } else if (inputs.lifeSpan === "") {
+    errors.lifeSpan = "This field is required.";
+  } else if (!numberPositive.test(inputs.lifeSpan)) {
     errors.lifeSpan = "It must be a positive number.";
-  if (inputs.height !== "" && !numberPositive.test(inputs.height))
+  }
+
+  //Height validations
+  if (firstInputs.current.height) {
+    firstInputs.current.height = inputs.height === "";
+  } else if (inputs.height === "") {
+    errors.height = "This field is required.";
+  } else if (!numberPositive.test(inputs.height)) {
     errors.height = "It must be a positive number.";
-  if (inputs.weight !== "" && !numberPositive.test(inputs.weight))
+  }
+
+  //Weight validations
+  if (firstInputs.current.weight) {
+    firstInputs.current.weight = inputs.weight === "";
+  } else if (inputs.weight === "") {
+    errors.weight = "This field is required.";
+  } else if (!numberPositive.test(inputs.weight)) {
     errors.weight = "It must be a positive number.";
-  if (inputs.name !== "" && !validName.test(inputs.name))
+  }
+
+  //Name validations
+  if (firstInputs.current.name) {
+    firstInputs.current.name = inputs.name === "";
+  } else if (inputs.name === "") {
+    errors.name = "This field is required.";
+  } else if (!validName.test(inputs.name)) {
     errors.name = "Numbers are not allowed.";
-  if (alreadyExist) errors.name = "This name is already exists.";
-  if (inputs.temperaments === "")
+  } else if (alreadyExist) {
+    errors.name = "This name is already exists.";
+  }
+
+  //Temperaments validations
+  if (firstInputs.current.temperaments) {
+    firstInputs.current.temperaments = inputs.temperaments === "";
+  } else if (inputs.temperaments === "") {
     errors.temperaments = "This field is required.";
-  if (inputs.image === "") errors.image = "This field is required.";
+  }
+
+  //Image validations
+  if (firstInputs.current.image) {
+    firstInputs.current.image = inputs.image === "";
+  } else if (inputs.image === "") {
+    errors.image = "This field is required.";
+  }
 
   return errors;
 }

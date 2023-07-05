@@ -11,7 +11,7 @@ const transfromDataAPI = (data) => {
     }));
     return transformedData;
   }
-  if (Object.keys(data).length) {
+  if (typeof data === "object" && Object.keys(data).length) {
     return {
       ...data,
       Temperaments: data.temperament ? data.temperament.split(", ") : [],
@@ -19,7 +19,7 @@ const transfromDataAPI = (data) => {
       reference_image_id: undefined
     };
   }
-  return {};
+  return [];
 };
 
 const transformDataDB = (data) => {
@@ -31,13 +31,13 @@ const transformDataDB = (data) => {
     }));
     return transformedData;
   }
-  if (Object.keys(data).length) {
+  if (typeof data === "object" && Object.keys(data).length) {
     return {
       ...data.toJSON(),
       Temperaments: data.Temperaments.map((temp) => temp.name),
     };
   }
-  return {};
+  return [];
 };
 
 module.exports = { transfromDataAPI, transformDataDB };

@@ -11,7 +11,7 @@ breedsRouter.get("/", async (req, res) => {
   const { search } = req.query;
   try {
     const result = await getBreeds(search)
-    res.status(302).json(result);
+    res.status(200).json(result);
   } catch (error) {
     res.status(422).json({ error: error.message });
   }
@@ -21,7 +21,7 @@ breedsRouter.get("/:id", async (req, res) => {
   const { id } = req.params;
   try {
     const result = await getBreedDetail(id)
-    res.status(302).json(result);
+    res.status(200).json(result);
   } catch (error) {
     res.status(422).json({ error: error.message });
   }

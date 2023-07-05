@@ -1,5 +1,5 @@
 import s from "./form.module.css";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import CustomInput from "../customInput";
 import SelectTempField from "../customSelect";
 import CustomImageUpload from "../customImageUpload";
@@ -10,6 +10,14 @@ export default function CustomForm() {
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [errors, setErrors] = useState({});
   const [formComplete, setFormComplete] = useState(false);
+  const firstInputs = useRef({
+    name: true,
+    lifeSpan: true,
+    image: true,
+    height: true,
+    weight: true,
+    temperaments: true,
+  });
   const [inputs, setInputs] = useState({
     name: "",
     lifeSpan: "",
@@ -32,7 +40,7 @@ export default function CustomForm() {
       weight: "",
       temperaments: "",
     });
-  }
+  };
 
   const handleSumbit = async (event) => {
     event.preventDefault();
@@ -44,9 +52,9 @@ export default function CustomForm() {
         };
         const res = await uploadDog(cleanInputs);
         if (res) {
-          resetAllInputs()
-          resetAllSelect()
-          alert("Your doggie was successfully created")
+          resetAllInputs();
+          resetAllSelect();
+          alert("Your doggie was successfully created");
         }
         console.log(res);
       } catch (error) {
@@ -58,10 +66,11 @@ export default function CustomForm() {
   const handleInput = (event) => {
     const valueInput = event.target.value;
     const nameInput = event.target.name;
+    console.log(valueInput);
 
     //prevent spaces key
     if (nameInput !== "name") {
-      if (event.key === " ") event.preventDefault();
+      if (event.key === "-" || event.key === " ") event.preventDefault();
     }
 
     if (nameInput !== "name" && valueInput.length <= 7) {
@@ -109,7 +118,7 @@ export default function CustomForm() {
   };
 
   useEffect(() => {
-    setErrors(validateForm(inputs));
+    setErrors(validateForm(inputs, firstInputs));
   }, [inputs]);
 
   useEffect(() => {
