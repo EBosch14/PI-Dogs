@@ -32,8 +32,9 @@ export default function Home() {
   return (
     <div className={s.container}>
       <div className={s.filters}>
-        <Filters/>
+        <Filters />
       </div>
+      <Cards allDogs={allDogs} currentPage={currentPage} pageSize={pageSize} />
       <div className={s.pagesContainer}>
         {pages.map((page) => (
           <button
@@ -45,7 +46,6 @@ export default function Home() {
           </button>
         ))}
       </div>
-      <Cards allDogs={allDogs} currentPage={currentPage} pageSize={pageSize} />
     </div>
   );
 }

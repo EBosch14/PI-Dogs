@@ -9,8 +9,8 @@ export default function Navbar({
 }) {
   return (
     <nav className={s.navbar}>
-      <Link className={s.link} to="/create">
-        Create a dog
+      <Link className={s.link} to="/home">
+        Go to Home
       </Link>
       <form action="" onSubmit={handleSumbit}>
         <div className={s.search}>
@@ -31,7 +31,9 @@ export default function Navbar({
           </div>
         </div>
       </form>
-      <Link className={s.link} to="/home">My favorites</Link>
+      <Link className={s.link} to="/create">
+        Create a dog
+      </Link>
     </nav>
   );
 }

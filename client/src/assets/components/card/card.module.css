@@ -7,22 +7,34 @@
   background-color: var(--green-pastel);
   position: relative;
   cursor: pointer;
+  box-shadow: 10px 10px 20px 0px rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: 10px 10px 20px 0px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 10px 10px 20px 0px rgba(0, 0, 0, 0.2);
+  transform: scale(1);
+  transition: transform 150ms ease-out, box-shadow 200ms ease-out;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 15px 15px 25px 5px rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: 15px 15px 25px 5px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 15px 15px 25px 5px rgba(0, 0, 0, 0.2);
 }
 
 .card::before {
   content: "";
   position: absolute;
   opacity: 0;
-  bottom: 0px; /* Ajusta la posición vertical para que comience donde termina s.name */
+  bottom: 0px;
   left: 0;
   width: 100%;
-  height: 80px; /* Ajusta la altura para abarcar s.name y s.moreInfo */
+  height: 80px;
   background: linear-gradient(
     to top,
     var(--yellow-pastel),
     var(--green-pastel)
   );
-  z-index: 0; /* Asegura que el fondo esté detrás de los elementos superpuestos */
+  z-index: 0;
   transition: opacity 0.3s ease;
 }
 
@@ -69,7 +81,7 @@
   color: var(--text-color);
   opacity: 0;
   z-index: 1;
-  transition: opacity 0.3s ease, height .3s ease;
+  transition: opacity 0.3s ease, height 0.3s ease;
 }
 
 .moreInfo svg {

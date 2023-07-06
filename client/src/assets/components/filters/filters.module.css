@@ -31,7 +31,7 @@ div.filterTemps div div div input{
 
 .filters > div {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: .5rem;
 }
 
