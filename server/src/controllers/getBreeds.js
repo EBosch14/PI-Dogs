@@ -12,7 +12,8 @@ const getBreeds = async (search) => {
       const breedsAPI = await searchBreeds(search);
       const dogsDB = await searchDogs(search);
       if (!breedsAPI.length && !dogsDB.length)
-        throw new Error(`No matches found for '${search}'`);
+        return []
+        // throw new Error(`No matches found for '${search}'`);
       return [...breedsAPI, ...dogsDB];
     }
   } catch (error) {

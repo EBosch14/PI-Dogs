@@ -7,16 +7,63 @@ import DetailPage from "./assets/views/detail";
 import CreatePage from "./assets/views/create";
 import FavoritesPage from "./assets/views/favorites";
 import NotFoundPage from "./assets/views/404";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useRef, useState } from "react";
+import {
+  clearInfo,
+  getDogByName,
+  getDogs,
+} from "./assets/redux/actions/payloads";
 
 function App() {
+  //hooks
+  //RouterDom
   const path = useLocation();
+  //Redux
+  const dispatch = useDispatch();
+  const allDogs = useSelector((state) => state.dogs.dogs);
+
+
+  useEffect(() => {
+    dispatch(getDogs());
+  }, [dispatch]);
+
+  //Filters
+  const [search, setSearch] = useState("");
+  const prevSearch = useRef(null);
+
+  const handleChange = (event) => {
+    const input = event.target.value;
+    setSearch(input);
+  };
+
+  const handleSumbit = (event) => {
+    event.preventDefault();
+    if (search === prevSearch.current || search === "") return;
+    prevSearch.current = search;
+    dispatch(getDogByName(search));
+  };
+
+  const handleShowAll = (event) => {
+    if (search === "" && !prevSearch.current) return;
+    dispatch(getDogs());
+    setSearch("");
+    prevSearch.current = null
+  };
 
   return (
     <>
-      {path.pathname !== "/" && <Navbar />}
+      {path.pathname !== "/" && (
+        <Navbar
+          handleShowAll={handleShowAll}
+          handleChange={handleChange}
+          handleSumbit={handleSumbit}
+          search={search}
+        />
+      )}
       <Routes>
         <Route exact path="/" element={<LandigPage />} />
-        <Route exact path="/home" element={<HomePage />} />
+        <Route exact path="/home" element={<HomePage allDogs={allDogs} />} />
         <Route exact path="/detail/:id" element={<DetailPage />} />
         <Route exact path="/create" element={<CreatePage />} />
         <Route exact path="/favorites" element={<FavoritesPage />} />

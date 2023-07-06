@@ -45,6 +45,34 @@
   margin-left: .5rem;
 }
 
+.search .buttons{
+  display: flex;
+  margin: .75rem .5rem .25rem;
+  gap: 1rem;
+}
+
+.search .buttons > button{
+  width: 7rem;
+  height: 2rem;
+  border: none;
+  background-color: var(--pink-pastel);
+  border-radius: 1.7rem;
+  color: var(--white-pastel);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 1.1em;
+  transform: scale(1);
+  transition: all .2s ease;
+}
+
+.search .buttons > button:hover{
+  transform: scale(1.05);
+}
+
+.search .buttons > button:active{
+  transform: scale(1);
+}
+
 .link{
   background-color: var(--pink-pastel);
   padding: 1.1rem;

@@ -1,0 +1,61 @@
+.filtersContainer{
+  position: relative;
+  z-index: 999;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 0 2.5rem;
+  background-color: transparent;
+  width: 85rem;
+}
+
+.filterTemps{
+  width: 26rem;
+  font-size: 1.1em;
+  margin-top: 1rem;
+}
+
+div.filterTemps div div div input{
+  width: 13rem;
+}
+
+.filters {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .5rem;
+}
+
+.filters > span {
+  font-weight: 500;
+}
+
+.filters > div {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+
+.filters > div > div{
+  gap: .5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.filters > div > div > label{
+  font-weight: 500;
+  padding: .5rem 1rem;
+  border-radius: 15px;
+  border: 3px solid var(--yellow-pastel);
+  cursor: pointer;
+}
+
+.filters > div > div > input[type="radio"]{
+  aspect-ratio: 1/1;
+  width: 1px;
+  display: none;
+}
+
+.filters > div > div > input[type="radio"]:checked + label{
+  background-color: var(--yellow-pastel);
+}

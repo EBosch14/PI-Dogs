@@ -7,9 +7,9 @@ const getBreedDetail = async (id) => {
     const dogDB = await getDogById(id);
     if (Object.keys(breedAPI).length) return breedAPI;
     if (Object.keys(dogDB).length) return dogDB;
-    throw new Error(`No matches found for id: ${id}`);
+    return []
   } catch (error) {
-    throw error;
+    throw new Error(`No matches found for id: ${id}`);
   }
 };
 

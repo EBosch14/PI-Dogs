@@ -5,9 +5,13 @@ let initalState = {
 };
 
 function tempsReducer(state = initalState, action) {
-  switch (action.type) {
+  const {type, payload} = action
+  switch (type) {
     case GET_TEMPERAMENTS:
-      return {};
+      return {
+        ...state,
+        temperaments: payload
+      };
 
     default:
       return state;

@@ -1,5 +1,17 @@
 .container {
-  align-self: center;
-  justify-self: center;
-  width: 85rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.filters {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  background-color: var(--dblue-pastel);
+  /* background: rgb(124, 164, 212); */
+  background: linear-gradient(
+    180deg,
+    var(--dblue-pastel) 50%,
+    var(--wblue-pastel) 100%
+  );
 }

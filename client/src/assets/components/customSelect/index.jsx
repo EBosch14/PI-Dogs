@@ -2,37 +2,25 @@ import { useState, useRef, useEffect } from "react";
 import s from "./select.module.css";
 import { AiFillCaretDown } from "react-icons/ai";
 import { RxCross2 } from "react-icons/rx";
+import { useDispatch, useSelector } from "react-redux";
+import { getTemperaments } from "../../redux/actions/payloads";
 
-export default function SelectTempField({ label, name, handleSelect, errors, selectedOptions, setSelectedOptions }) {
-  const temperaments = [
-    "Stubborn",
-    "Curious",
-    "Playful",
-    "Adventurous",
-    "Active",
-    "Fun-loving",
-    "Aloof",
-    "Clownish",
-    "Dignified",
-    "Independent",
-    "Happy",
-    "Wild",
-    "Hardworking",
-    "Dutiful",
-    "Outgoing",
-    "Friendly",
-    "Alert",
-    "Confident",
-    "Intelligent",
-    "Courageous",
-    "Loyal",
-    "Brave",
-    "Docile",
-    "Responsive",
-    "Composed",
-    "Receptive",
-  ];
+export default function SelectTempField({
+  label,
+  name,
+  handleSelect = function(){},
+  errors = {},
+  selectedOptions,
+  setSelectedOptions,
+}) {
+  const dispatch = useDispatch()
+  const temperaments = useSelector(state => state.temperaments.temperaments)
+  //const temperaments = [];
 
+  useEffect(() => {
+    dispatch(getTemperaments())
+  }, [dispatch])
+  
   useEffect(() => {
     handleSelect(selectedOptions);
   }, [selectedOptions]);

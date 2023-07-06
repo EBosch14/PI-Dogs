@@ -5,20 +5,20 @@ import { AiOutlineColumnHeight } from "react-icons/ai";
 import { FaStream } from "react-icons/fa";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import { useEffect, useState } from "react";
-import { getDogByID } from "../../services/fetchingAPI";
+import { useDispatch, useSelector } from "react-redux";
+import { clearInfo, getDetailDog } from "../../redux/actions/payloads";
 
 export default function DetailPage() {
   const { id } = useParams();
-  const [dog, setDog] = useState(null);
+  const dispatch = useDispatch();
+  const dog = useSelector((state) => state.dogs.detailDog);
+  // const [dog, setDog] = useState(detailDog);
 
   useEffect(() => {
-    const getDog = async () => {
-      const data = await getDogByID(id);
-      setDog(data);
+    dispatch(getDetailDog(id));
+    return () => {
+      dispatch(clearInfo("detailDog"));
     };
-    getDog();
-
-    return setDog(null);
   }, [id]);
 
   const imageNotFound =
@@ -27,7 +27,7 @@ export default function DetailPage() {
   return (
     <div className={s.container}>
       <div className={s.details}>
-        {dog && (
+        {(
           <>
             <div className={s.leftSide}>
               <img
