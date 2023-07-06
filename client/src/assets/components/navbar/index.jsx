@@ -31,7 +31,7 @@ export default function Navbar({
           </div>
         </div>
       </form>
-      <Link className={s.link}>My favorites</Link>
+      <Link className={s.link} to="/home">My favorites</Link>
     </nav>
   );
 }

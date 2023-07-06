@@ -15,7 +15,6 @@ export default function Filters({ allDogs }) {
 
   useEffect(() => {
     dispatch(filterDogs(filters));
-    console.log(filters);
   }, [filters]);
 
   const handleTempsChange = () => {

@@ -1,6 +1,7 @@
 .container {
   display: flex;
   flex-direction: column;
+  margin-bottom: 5rem;
 }
 
 .filters {
@@ -14,4 +15,26 @@
     var(--dblue-pastel) 50%,
     var(--wblue-pastel) 100%
   );
+}
+
+.pagesContainer{
+  align-self: center;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.pagesContainer .pageBtn{
+  border: none;
+  padding: .75rem 1rem;
+  border-radius: 5px;
+  font-size: 1em;
+  font-weight: 600;
+  background-color: var(--pink-pastel);
+  color: var(--white-pastel);
+}
+
+.pagesContainer .pageBtn.active{
+  background-color: #f69dbb;
+  transform: scale(1.3);
+  font-weight: 700;
 }

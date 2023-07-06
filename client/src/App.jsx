@@ -7,8 +7,7 @@ import DetailPage from "./assets/views/detail";
 import CreatePage from "./assets/views/create";
 import FavoritesPage from "./assets/views/favorites";
 import NotFoundPage from "./assets/views/404";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import {
   clearInfo,
   getDogByName,
@@ -16,18 +15,8 @@ import {
 } from "./assets/redux/actions/payloads";
 
 function App() {
-  //hooks
   //RouterDom
   const path = useLocation();
-  //Redux
-  const dispatch = useDispatch();
-  const allDogs = useSelector((state) => state.dogs.filterDogs);
-
-
-  useEffect(() => {
-    dispatch(getDogs());
-    console.log(allDogs);
-  }, [dispatch]);
 
   //Filters
   const [search, setSearch] = useState("");
@@ -64,7 +53,7 @@ function App() {
       )}
       <Routes>
         <Route exact path="/" element={<LandigPage />} />
-        <Route exact path="/home" element={<HomePage allDogs={allDogs} />} />
+        <Route exact path="/home" element={<HomePage />} />
         <Route exact path="/detail/:id" element={<DetailPage />} />
         <Route exact path="/create" element={<CreatePage />} />
         <Route exact path="/favorites" element={<FavoritesPage />} />
