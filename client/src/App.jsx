@@ -9,16 +9,17 @@ import FavoritesPage from "./assets/views/favorites";
 import NotFoundPage from "./assets/views/404";
 import { useRef, useState } from "react";
 import {
-  clearInfo,
   getDogByName,
   getDogs,
 } from "./assets/redux/actions/payloads";
+import { useDispatch } from "react-redux";
 
 function App() {
   //RouterDom
   const path = useLocation();
 
   //Filters
+  const dispatch = useDispatch()
   const [search, setSearch] = useState("");
   const prevSearch = useRef(null);
 

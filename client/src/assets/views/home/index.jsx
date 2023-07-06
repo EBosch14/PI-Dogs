@@ -32,7 +32,7 @@ export default function Home() {
   return (
     <div className={s.container}>
       <div className={s.filters}>
-        <Filters allDogs={allDogs} />
+        <Filters/>
       </div>
       <div className={s.pagesContainer}>
         {pages.map((page) => (

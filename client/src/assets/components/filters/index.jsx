@@ -1,23 +1,22 @@
 import { useEffect, useState } from "react";
 import SelectTempField from "../customSelect";
 import s from "./filters.module.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { filterDogs } from "../../redux/actions/payloads";
 
-export default function Filters({ allDogs }) {
+export default function Filters() {
   const [selectedTemps, setSelectedTemps] = useState([]);
   const [filters, setFilters] = useState({
     selectedTemps: [],
     orderBy: "azOpt",
-    whereFrom: "API",
+    whereFrom: "All",
   });
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(filterDogs(filters));
-  }, [filters]);
 
   const handleTempsChange = () => {
+    //Temperaments
+    dispatch(filterDogs({...filters, selectedTemps}))
     setFilters((prevState) => ({
       ...prevState,
       selectedTemps: selectedTemps,
@@ -25,15 +24,10 @@ export default function Filters({ allDogs }) {
   };
 
   const handleOrderByChange = (event) => {
+    //zaOpt || azOpt || ascWeight || descWeight
     const orderBy = event.target.value;
-    if (orderBy === "ascWeight" || orderBy === "descWeight") {
-      const filter = allDogs.sort((a, b) => {
-        const weightA = [parseInt(a.weight.split(" - ")[0])];
-        const weightB = [parseInt(b.weight.split(" - ")[0])];
-        return weightA - weightB;
-      });
-      console.log(filter);
-    }
+    //console.log(orderBy);
+    dispatch(filterDogs({...filters, orderBy}))
     setFilters((prevState) => ({
       ...prevState,
       orderBy: orderBy,
@@ -41,7 +35,11 @@ export default function Filters({ allDogs }) {
   };
 
   const handleWhereFilterChange = (event) => {
+    //API || DB || All
     const whereFrom = event.target.value;
+    console.log(whereFrom);
+    dispatch(filterDogs({...filters, whereFrom}))
+
     setFilters((prevState) => ({
       ...prevState,
       whereFrom: whereFrom,
@@ -137,6 +135,17 @@ export default function Filters({ allDogs }) {
               onChange={handleWhereFilterChange}
             />
             <label htmlFor="DB">DB</label>
+          </div>
+          <div className={s.allOption}>
+            <input
+              className={s.checkboxLabel}
+              type="radio"
+              name="createDog"
+              id="all"
+              value="All"
+              onChange={handleWhereFilterChange}
+            />
+            <label htmlFor="all">All</label>
           </div>
         </div>
       </div>

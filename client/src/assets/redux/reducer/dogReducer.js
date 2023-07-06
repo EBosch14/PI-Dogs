@@ -34,7 +34,7 @@ function dogReducer(state = initalState, action) {
     case GET_BY_NAME:
       return {
         ...state,
-        dogs: payload,
+        filterDogs: payload,
       };
 
     case GET_BY_ID:
@@ -54,8 +54,13 @@ function dogReducer(state = initalState, action) {
           dogs: [],
         };
     case FILTER_DOGS: {
-      let filterData = state.dogs;
+      let filterData = [...state.dogs];
       const { selectedTemps, orderBy, whereFrom } = payload;
+
+      if (selectedTemps.length) {
+        filterData = filterByTemps(filterData, selectedTemps);
+      }
+
       if (orderBy === "azOpt") {
         filterData = orderByAZ(filterData);
       } else if (orderBy === "zaOpt") {
@@ -66,22 +71,19 @@ function dogReducer(state = initalState, action) {
         filterData = orderByDescWeight(filterData);
       }
 
-      if (selectedTemps.length) {
-        filterData = filterByTemps(filterData, selectedTemps);
-      }
-
       if (whereFrom === "API") {
         filterData = filterFromAPI(filterData);
       } else if (whereFrom === "DB") {
         filterData = filterFromDB(filterData);
       }
+
       return {
         ...state,
         filterDogs: filterData,
       };
     }
     default:
-      return state;
+      return { ...state };
   }
 }
 

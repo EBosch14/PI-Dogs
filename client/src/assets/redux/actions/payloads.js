@@ -53,7 +53,7 @@ export function clearInfo(prop) {
 }
 
 export function filterDogs(filters) {
-  return async function (dispatch) {
+  return function (dispatch) {
     return dispatch({
       type: FILTER_DOGS,
       payload: filters,
