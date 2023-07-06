@@ -4,8 +4,8 @@ const transfromDataAPI = (data) => {
       ...breed,
       Temperaments: breed.temperament ? breed.temperament.split(", ") : [],
       image: breed.image.url,
-      height: breed.height.metric,
-      weight: breed.weight.metric,
+      height: `${breed.height.metric} cm`,
+      weight: `${breed.weight.metric} kg`,
       temperament: undefined,
       reference_image_id: undefined
     }));

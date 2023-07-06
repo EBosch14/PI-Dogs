@@ -12,7 +12,6 @@ export default function DetailPage() {
   const { id } = useParams();
   const dispatch = useDispatch();
   const dog = useSelector((state) => state.dogs.detailDog);
-  // const [dog, setDog] = useState(detailDog);
 
   useEffect(() => {
     dispatch(getDetailDog(id));
@@ -42,14 +41,14 @@ export default function DetailPage() {
                   <GiWeight />
                   <span>Weight</span>{" "}
                 </div>
-                <p>{dog.weight ? `${dog.weight} kg` : "Unknown"}</p>
+                <p>{dog.weight ? `${dog.weight}` : "Unknown"}</p>
               </div>
               <div className={s.height}>
                 <div>
                   <AiOutlineColumnHeight />
                   <span>Height</span>{" "}
                 </div>
-                <p>{dog.height ? `${dog.height} cm` : "Unknown"}</p>
+                <p>{dog.height ? `${dog.height}` : "Unknown"}</p>
               </div>
               <div className={s.lifeSpan}>
                 <div>

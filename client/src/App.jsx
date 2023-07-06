@@ -21,11 +21,12 @@ function App() {
   const path = useLocation();
   //Redux
   const dispatch = useDispatch();
-  const allDogs = useSelector((state) => state.dogs.dogs);
+  const allDogs = useSelector((state) => state.dogs.filterDogs);
 
 
   useEffect(() => {
     dispatch(getDogs());
+    console.log(allDogs);
   }, [dispatch]);
 
   //Filters

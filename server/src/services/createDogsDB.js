@@ -15,7 +15,7 @@ const createDogsDB = async ({
       image,
       height: `${height} cm`,
       weight: `${weight} kg`,
-      life_span: lifeSpan,
+      life_span: `${lifeSpan} years`,
     });
     //associating temperaments with dogs
     const temps = temperaments.split(", ");

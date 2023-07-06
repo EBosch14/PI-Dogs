@@ -1,23 +1,10 @@
 const numberPositive = /^\d*\.?\d+$/;
 const validName = /^[A-Za-z\s]+$/;
-const namesExists = [
-  {
-    name: "enzo",
-  },
-  {
-    name: "chino",
-  },
-  {
-    name: "tumina",
-  },
-  {
-    name: "mamasita",
-  },
-];
 
-export function validateForm(inputs, firstInputs) {
+export function validateForm(inputs, firstInputs, allDogs) {
+  console.log(allDogs);
   const errors = {};
-  const alreadyExist = namesExists.find(
+  const alreadyExist = allDogs.find(
     (el) => el.name.toLowerCase() === inputs.name.toLowerCase().trim(),
   );
 

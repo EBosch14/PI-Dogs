@@ -5,8 +5,19 @@ import SelectTempField from "../customSelect";
 import CustomImageUpload from "../customImageUpload";
 import { validateForm } from "../../utils/validateForm";
 import { uploadDog } from "../../services/fetchingAPI";
+import { useDispatch, useSelector } from "react-redux";
+import { getDogs } from "../../redux/actions/payloads";
 
 export default function CustomForm() {
+  //Redux state
+  const dispatch = useDispatch()
+  const allDogs = useSelector(state => state.dogs.dogs)
+
+  useEffect(() => {
+    dispatch(getDogs())
+  }, [dispatch])
+
+  //From Hooks
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [errors, setErrors] = useState({});
   const [formComplete, setFormComplete] = useState(false);
@@ -18,6 +29,7 @@ export default function CustomForm() {
     weight: true,
     temperaments: true,
   });
+
   const [inputs, setInputs] = useState({
     name: "",
     lifeSpan: "",
@@ -42,6 +54,28 @@ export default function CustomForm() {
     });
   };
 
+  const resetAllRef = () => {
+    firstInputs.current = {
+      name: true,
+      lifeSpan: true,
+      image: true,
+      height: true,
+      weight: true,
+      temperaments: true,
+    };
+  };
+
+  useEffect(() => {
+    setErrors(validateForm(inputs, firstInputs, allDogs));
+  }, [inputs]);
+
+  useEffect(() => {
+    setFormComplete(
+      Object.values(inputs).every((el) => el !== "") &&
+        Object.keys(errors).length === 0,
+    );
+  }, [errors]);
+
   const handleSumbit = async (event) => {
     event.preventDefault();
     if (setFormComplete) {
@@ -54,6 +88,7 @@ export default function CustomForm() {
         if (res) {
           resetAllInputs();
           resetAllSelect();
+          resetAllRef();
           alert("Your doggie was successfully created");
         }
         console.log(res);
@@ -66,7 +101,6 @@ export default function CustomForm() {
   const handleInput = (event) => {
     const valueInput = event.target.value;
     const nameInput = event.target.name;
-    console.log(valueInput);
 
     //prevent spaces key
     if (nameInput !== "name") {
@@ -116,17 +150,6 @@ export default function CustomForm() {
       temperaments: selectedTemps.join(", "),
     }));
   };
-
-  useEffect(() => {
-    setErrors(validateForm(inputs, firstInputs));
-  }, [inputs]);
-
-  useEffect(() => {
-    setFormComplete(
-      Object.values(inputs).every((el) => el !== "") &&
-        Object.keys(errors).length === 0,
-    );
-  }, [errors]);
 
   return (
     <form className={s.form} onSubmit={handleSumbit}>

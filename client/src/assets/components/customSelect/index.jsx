@@ -8,14 +8,13 @@ import { getTemperaments } from "../../redux/actions/payloads";
 export default function SelectTempField({
   label,
   name,
-  handleSelect = function(){},
+  handleSelect,
   errors = {},
   selectedOptions,
   setSelectedOptions,
 }) {
   const dispatch = useDispatch()
   const temperaments = useSelector(state => state.temperaments.temperaments)
-  //const temperaments = [];
 
   useEffect(() => {
     dispatch(getTemperaments())

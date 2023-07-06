@@ -1,45 +1,53 @@
 import { useEffect, useState } from "react";
 import SelectTempField from "../customSelect";
 import s from "./filters.module.css";
+import { useDispatch } from "react-redux";
+import { filterDogs } from "../../redux/actions/payloads";
 
 export default function Filters({ allDogs }) {
   const [selectedTemps, setSelectedTemps] = useState([]);
+  const [filters, setFilters] = useState({
+    selectedTemps: [],
+    orderBy: "azOpt",
+    whereFrom: "API",
+  });
+  const dispatch = useDispatch();
 
-  const filterDogs = () => {
-    const filterData = allDogs.filter((dog) => {
-      return selectedTemps?.every((temp) => dog.Temperaments.includes(temp));
-    });
-    console.log(filterData);
+  useEffect(() => {
+    dispatch(filterDogs(filters));
+    console.log(filters);
+  }, [filters]);
+
+  const handleTempsChange = () => {
+    setFilters((prevState) => ({
+      ...prevState,
+      selectedTemps: selectedTemps,
+    }));
   };
 
-  const handleFilterChange = (event) => {
-    const orderBy = event.target.value
-
-    let filterData = [...allDogs]
-
-    if (orderBy === "azOpt"){
-      filterData.sort((a,b) => a.name.localeCompare(b.name))
-    } else if (orderBy === "zaOpt"){
-      filterData.sort((a,b) => b.name.localeCompare(a.name))
-    } else if(orderBy === "ascWeight") {
-      filterData.sort((a,b) => {
-        const weightA = parseInt(a.weight.split(" - ")[0])
-        const weightB = parseInt(b.weight.split(" - ")[0])
-        return weightA - weightB
-      })
-    } else if(orderBy === "descWeight") {
-      filterData.sort((a,b) => {
-        const weightA = parseInt(a.weight.split(" - ")[0])
-        const weightB = parseInt(b.weight.split(" - ")[0])
-        return weightB - weightA
-      })
+  const handleOrderByChange = (event) => {
+    const orderBy = event.target.value;
+    if (orderBy === "ascWeight" || orderBy === "descWeight") {
+      const filter = allDogs.sort((a, b) => {
+        const weightA = [parseInt(a.weight.split(" - ")[0])];
+        const weightB = [parseInt(b.weight.split(" - ")[0])];
+        return weightA - weightB;
+      });
+      console.log(filter);
     }
-
-    console.log(filterData);
+    setFilters((prevState) => ({
+      ...prevState,
+      orderBy: orderBy,
+    }));
   };
-  // useEffect(() => {
-  //   console.log(selectedTemps);
-  // }, [selectedTemps])
+
+  const handleWhereFilterChange = (event) => {
+    const whereFrom = event.target.value;
+    setFilters((prevState) => ({
+      ...prevState,
+      whereFrom: whereFrom,
+    }));
+  };
 
   return (
     <div className={s.filtersContainer}>
@@ -47,7 +55,7 @@ export default function Filters({ allDogs }) {
         <SelectTempField
           label={"filter by temperaments: "}
           name={"temperaments"}
-          handleSelect={filterDogs}
+          handleSelect={handleTempsChange}
           selectedOptions={selectedTemps}
           setSelectedOptions={setSelectedTemps}
         />
@@ -62,7 +70,7 @@ export default function Filters({ allDogs }) {
               name="filtersDogs"
               id="azOpt"
               value="azOpt"
-              onChange={handleFilterChange}
+              onChange={handleOrderByChange}
             />
             <label htmlFor="azOpt">A - Z</label>
           </div>
@@ -73,7 +81,7 @@ export default function Filters({ allDogs }) {
               name="filtersDogs"
               id="zaOpt"
               value="zaOpt"
-              onChange={handleFilterChange}
+              onChange={handleOrderByChange}
             />
             <label htmlFor="zaOpt">Z - A</label>
           </div>
@@ -89,7 +97,7 @@ export default function Filters({ allDogs }) {
               name="filtersDogs"
               id="ascWeight"
               value="ascWeight"
-              onChange={handleFilterChange}
+              onChange={handleOrderByChange}
             />
             <label htmlFor="ascWeight">Ascendent</label>
           </div>
@@ -100,7 +108,7 @@ export default function Filters({ allDogs }) {
               name="filtersDogs"
               id="descWeight"
               value="descWeight"
-              onChange={handleFilterChange}
+              onChange={handleOrderByChange}
             />
             <label htmlFor="descWeight">Descendent</label>
           </div>
@@ -116,7 +124,7 @@ export default function Filters({ allDogs }) {
               name="createDog"
               id="API"
               value="API"
-              onChange={handleFilterChange}
+              onChange={handleWhereFilterChange}
             />
             <label htmlFor="API">API</label>
           </div>
@@ -127,7 +135,7 @@ export default function Filters({ allDogs }) {
               name="createDog"
               id="DB"
               value="DB"
-              onChange={handleFilterChange}
+              onChange={handleWhereFilterChange}
             />
             <label htmlFor="DB">DB</label>
           </div>

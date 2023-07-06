@@ -1,6 +1,17 @@
-import axios from "axios";
-import { CLEAR_INFO, GET_BY_ID, GET_BY_NAME, GET_DOGS, GET_TEMPERAMENTS } from "./types";
-import { getAllDogs, getAllTemps, getDogByID, searchDogs } from "../../services/fetchingAPI";
+import {
+  CLEAR_INFO,
+  FILTER_DOGS,
+  GET_BY_ID,
+  GET_BY_NAME,
+  GET_DOGS,
+  GET_TEMPERAMENTS,
+} from "./types";
+import {
+  getAllDogs,
+  getAllTemps,
+  getDogByID,
+  searchDogs,
+} from "../../services/fetchingAPI";
 
 export function getDogs() {
   return async function (dispatch) {
@@ -36,17 +47,26 @@ export function clearInfo(prop) {
   return function (dispatch) {
     return dispatch({
       type: CLEAR_INFO,
-      payload: prop
-    })
-  }
+      payload: prop,
+    });
+  };
+}
+
+export function filterDogs(filters) {
+  return async function (dispatch) {
+    return dispatch({
+      type: FILTER_DOGS,
+      payload: filters,
+    });
+  };
 }
 
 export function getTemperaments() {
-  return async function (dispatch){
-    const temps = await getAllTemps()
+  return async function (dispatch) {
+    const temps = await getAllTemps();
     return dispatch({
       type: GET_TEMPERAMENTS,
-      payload: temps
-    })
-  }
+      payload: temps.sort((a, b) => a.localeCompare(b)),
+    });
+  };
 }
