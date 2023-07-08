@@ -9,6 +9,7 @@ async function uploadDog(data) {
     }
     return response.data;
   } catch (error) {
+    alert(`Error al crear el perro, intente de nuevo. Error: ${error.message}`)
     console.error(error);
     throw error;
   }

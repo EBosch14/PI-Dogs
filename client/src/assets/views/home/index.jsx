@@ -23,6 +23,7 @@ export default function Home() {
 
   useEffect(() => {
     if (currentPage > totalPages) setCurrentPage(1);
+    window.scrollTo(top)
   }, [currentPage, totalPages]);
 
   const handlePage = (page) => {
