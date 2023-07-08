@@ -20,7 +20,7 @@ const createDogsDB = async ({
     //associating temperaments with dogs
     const temps = temperaments.split(", ");
     const foundsTemps = await getAllTempsDB(temps);
-    if (foundsTemps.length) dog.addTemperamentsa(foundsTemps);
+    if (foundsTemps.length) dog.addTemperaments(foundsTemps);
     else {
       //pending....
     }
