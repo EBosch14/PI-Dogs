@@ -1,5 +1,6 @@
 import axios from "axios";
-const URL_API = "http://localhost:4444"
+// const URL_API = "http://localhost:4444"
+const URL_API = "https://api-dogs-3if0.onrender.com"
 
 async function uploadDog(data) {
   try {
