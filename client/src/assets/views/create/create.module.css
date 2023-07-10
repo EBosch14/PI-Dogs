@@ -1,4 +1,5 @@
 .container{
+  width: 100%;
   background-image: url("https://img.freepik.com/foto-gratis/retrato-grupo-adorables-cachorros_53876-64778.jpg?t=st=1688414467~exp=1688415067~hmac=6110055f64182b914ad3a87a7cbb0380147b9599ae55f24dddf66c01396fc0b8");
   height: 72.5rem;
   display: flex;

@@ -18,7 +18,9 @@ export default function LandigPage() {
   const [selectedImage, setSelectedImage] = useState(images[0]);
 
   const selectNewImage = (index, images, next = true) => {
-    const condition = next ? selectedIndex < images.length - 1 : selectedIndex > 0;
+    const condition = next
+      ? selectedIndex < images.length - 1
+      : selectedIndex > 0;
     const nextIndex = next
       ? condition
         ? selectedIndex + 1
@@ -62,15 +64,15 @@ export default function LandigPage() {
           </Link>
         </div>
         <div className={s.rightContainer}>
-          <button className={s.leftButton} onClick={previus}>
-            <FaChevronLeft />
-          </button>
           <div className={s.imgContainer}>
+            <button className={s.leftButton} onClick={previus}>
+              <FaChevronLeft />
+            </button>
             <img src={selectedImage} alt="Doggie" />
+            <button className={s.rightButton} onClick={next}>
+              <FaChevronRight />
+            </button>
           </div>
-          <button className={s.rightButton} onClick={next}>
-            <FaChevronRight />
-          </button>
         </div>
       </div>
     </div>

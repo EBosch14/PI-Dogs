@@ -1,9 +1,10 @@
 .cardsContainer {
   margin: 0rem .5rem 4rem;
   display: grid;
-  width: 85rem;
+  max-width: 85rem;
   grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
   justify-items: center;
   row-gap: 3rem;
+  column-gap: 3rem;
   align-self: center;
 }

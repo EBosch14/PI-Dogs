@@ -31,7 +31,7 @@ export default function Home() {
   };
 
   return (
-    <div className={s.container}>
+    <>
       <div className={s.filters}>
         <Filters />
       </div>
@@ -47,6 +47,6 @@ export default function Home() {
           </button>
         ))}
       </div>
-    </div>
+    </>
   );
 }

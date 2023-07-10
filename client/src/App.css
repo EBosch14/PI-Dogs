@@ -1,4 +1,4 @@
 #root {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  justify-items: center;
 }

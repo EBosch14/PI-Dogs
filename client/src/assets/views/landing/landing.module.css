@@ -1,13 +1,15 @@
 .container {
+  overflow: auto;
   height: 100vh;
   display: flex;
   align-items: center;
   align-self: center;
+  max-width: 85%;
 }
 
 .landing {
-  width: 70vw;
-  height: 70vh;
+  max-width: 100%;
+  aspect-ratio: 2/1;
   background: var(--white-pastel);
   display: flex;
   align-items: center;
@@ -16,8 +18,7 @@
 }
 
 .leftContainer {
-  width: 400px;
-  height: 85%;
+  width: 350px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -79,9 +80,8 @@
 
 
 .rightContainer {
-  position: relative;
-  max-width: 700px;
-  height: 80%;
+  width: 700px;
+  align-self: stretch;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -137,8 +137,9 @@
 }
 
 .imgContainer {
-  width: 100%;
-  height: 100%;
+  position: relative;
+  width: 80%;
+  height: 70%;
 }
 
 .imgContainer img {

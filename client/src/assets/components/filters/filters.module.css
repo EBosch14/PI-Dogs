@@ -1,11 +1,12 @@
 .filtersContainer{
+  justify-self: stretch;
   position: relative;
   z-index: 999;
   display: flex;
   justify-content: space-between;
   padding: 1rem 0 2.5rem;
   background-color: transparent;
-  width: 85rem;
+  width: 80%;
 }
 
 .filterTemps{

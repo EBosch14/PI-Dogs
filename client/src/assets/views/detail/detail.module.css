@@ -1,30 +1,24 @@
 .container {
-  height: 85vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  /* height: 85vh; */
+  display: grid;
+  place-items: center;
   gap: 1rem;
 }
 
 .details {
-  margin-top: 2rem;
-  background-color: var(--white-pastel);
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-  height: 40rem;
-  width: 75%;
+  background-color: var(--white-pastel);
   border: 10px solid var(--white-pastel);
   border-radius: 16px;
-  overflow: hidden;
+  margin-top: 2rem;
+  max-height: 40rem;
+  max-width: 80%;
 }
 
 .leftSide {
   background-color: var(--green-pastel);
   border-radius: 0 8px 8px 0;
   width: 50%;
-  height: 100%;
 }
 
 .leftSide img {
@@ -36,12 +30,13 @@
 .rightSide {
   background-color: var(--green-pastel);
   border-radius: 0 8px 8px 0;
-  padding: 2rem;
+  padding: 0 2rem 2rem;
   width: 50%;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: 2fr repeat(3, 1fr);
+  grid-template-rows: 1fr repeat(3, .75fr);
   justify-items: center;
+  overflow: auto;
 }
 
 .rightSide .breed {
@@ -52,7 +47,6 @@
   text-align: center;
   font-weight: 700;
   letter-spacing: 0.1em;
-  padding: 0 0 1rem;
   color: var(--white-pastel);
 }
 
