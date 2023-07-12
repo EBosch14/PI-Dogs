@@ -2,7 +2,7 @@
 
 Welcome to the documentation of the Full Stack project based on "The Dogs API"! In this documentation, I will provide a detailed description of the technologies used, the project structure, and the implemented functionalities.
 
-**Link de la API: [The Dog API](https://thedogapi.com/)**
+**API Link: [The Dog API](https://thedogapi.com/)**
 
 
 ## Overview
