@@ -1,0 +1,52 @@
+.footer {
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+}
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.footer > div {
+  border-radius: 15px;
+}
+
+.footer > div > a {
+  display: block;
+  padding: 0.25rem 0.5rem;
+}
+
+.footer > div > a > svg {
+  font-size: 2em;
+  line-height: 2em;
+}
+
+.footer .linkedIn {
+  background-color: #0a66c2;
+}
+
+.footer .linkedIn svg {
+  color: var(--white-pastel);
+}
+
+.footer .instagram {
+  background: radial-gradient(
+      circle farthest-corner at 32% 106%,
+      rgb(255, 225, 125) 0%,
+      rgb(255, 205, 105) 10%,
+      rgb(250, 145, 55) 28%,
+      rgb(235, 65, 65) 42%,
+      transparent 82%
+    ),
+    linear-gradient(135deg, rgb(35, 75, 215) 12%, rgb(195, 60, 190) 58%);
+}
+
+.footer .instagram svg {
+  color: var(--white-pastel);
+  stroke-width: 0.5;
+  position: relative;
+  top: 3px;
+}

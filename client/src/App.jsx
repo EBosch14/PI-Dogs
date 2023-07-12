@@ -11,6 +11,7 @@ import { useRef, useState, useEffect } from "react";
 import { getDogByName, getDogs } from "./assets/redux/actions/payloads";
 import { useDispatch } from "react-redux";
 import OnlyDesktopPage from "./assets/views/onlyDesktop";
+import SocialWebs from "./assets/components/socialWebs";
 
 function App() {
   //RouterDom
@@ -82,6 +83,7 @@ function App() {
         <Route exact path="/error" element={<OnlyDesktopPage />} />
         <Route path="/*" element={<NotFoundPage />} />
       </Routes>
+      <SocialWebs/>
     </>
   );
 }
