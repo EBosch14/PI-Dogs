@@ -36,17 +36,17 @@ The project is organized into a logical and easy-to-understand folder and file s
     - services/       # Services for making API requests
     - utils/          # Utility functions
   - test/             # Test folder //in progress
-  - index.js        # Backend entry point
+  - index.js          # Backend entry point
   - package.json      # Backend dependencies and scripts
 
 - frontend/           # Frontend folder
   - src/              # Frontend source code
     - assets/         # Static assets folder
-      - components/     # Reusable components
-      - redux/          # Redux configuration
-      - services/       # Services for making API requests
-      - utils/          # General utilities
-      - views/          # Main application pages
+      - components/   # Reusable components
+      - redux/        # Redux configuration
+      - services/     # Services for making API requests
+      - utils/        # General utilities
+      - views/        # Main application pages
     - app.jsx         # Root component of the application
     - index.jsx       # Frontend entry point
   - package.json      # Frontend dependencies and scripts
