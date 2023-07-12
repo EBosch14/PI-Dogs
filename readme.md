@@ -1,169 +1,78 @@
-![HenryLogo](https://d31uz8lwfmyn8g.cloudfront.net/Assets/logo-henry-white-lg.png)
+# Full Stack Project Documentation - The Dogs API
 
-# **GUÍA | ¿Cómo empezar un proyecto individual?**
+Welcome to the documentation of the Full Stack project based on "The Dogs API"! In this documentation, I will provide a detailed description of the technologies used, the project structure, and the implemented functionalities.
 
-### 🤓 Antes de comenzar, te recomendamos leer el [**README**](./README.md) y la Documentación de la API Externa para comprender la temática que debes desarrollar y lo que se considera como requisito obligatorio para estar en condiciones de presentar un PI.
+**Link de la API: [The Dog API](https://thedogapi.com/)**
 
-<br />
 
----
+## Overview
+This Full Stack project aims to create a web application that allows users to explore information about different dog breeds using "The Dogs API". The application provides functionalities such as displaying dog breed data in the form of cards, creating new dog breeds, filtering by temperaments, weight, and height, pagination, and searching by breed name.
 
-<br />
+## Technologies Used
 
-## **🧾 LISTADO DE REQUISITOS INDISPENSABLES**
+### Frontend
+- **ViteJS**: ViteJS is a fast development environment for modern web applications. It was chosen for its focus on development speed and the ability to build fast and efficient applications.
+- **React**: React is a widely-used JavaScript library for building interactive user interfaces. It was chosen for its popularity, flexibility, and performance.
+- **Redux**: Redux is a state management library used to handle the global state of the application. Redux was chosen to maintain a consistent data flow and facilitate data sharing between components.
+- **Native CSS**: Native CSS was used for styling the application. This allows for greater flexibility and control over the design and appearance of the application.
 
-<br />
+### Backend
+- **Node.js**: Node.js is a JavaScript runtime environment for server-side execution. It was chosen for its efficiency and ability to handle a large number of concurrent requests.
+- **Express**: Express is a Node.js framework for building web applications. It was used to build the backend API and handle client requests.
+- **Sequelize**: Sequelize is a Node.js ORM (Object-Relational Mapping) that provides a simple interface for interacting with the database. Sequelize was chosen to facilitate communication with the PostgreSQL database.
 
-<h1 align="center"> GENERAL </h1>
+### Database
+- **PostgreSQL**: PostgreSQL is an open-source relational database management system. It was chosen for its robustness, performance, and ability to handle large volumes of data.
 
-### **📌 TENER EN CUENTA**
+## Project Structure
+The project is organized into a logical and easy-to-understand folder and file structure. Here is a description of the main folders and files:
 
--  Es requisito que el formulario de creación esté validado con JavaScript y no sólo con validaciones HTML.
--  Para las funcionalidades de filtrado y ordenamiento **NO** puedeS utilizar los end-points de la API externa que ya devuelven los resultados filtrados u ordenados, sino que debes realizarlo tu mismo.
--  Utilizar únicamente los end-points que están indicados en el [**README**](./README.md).
+```
+- backend/            # Backend folder
+  - src/              # Resource folder
+    - controllers/    # API controllers
+    - models/         # Database models
+    - routes/         # API routes
+    - services/       # Services for making API requests
+    - utils/          # Utility functions
+  - test/             # Test folder //in progress
+  - index.js        # Backend entry point
+  - package.json      # Backend dependencies and scripts
 
-<br />
+- frontend/           # Frontend folder
+  - src/              # Frontend source code
+    - assets/         # Static assets folder
+      - components/     # Reusable components
+      - redux/          # Redux configuration
+      - services/       # Services for making API requests
+      - utils/          # General utilities
+      - views/          # Main application pages
+    - app.jsx         # Root component of the application
+    - index.jsx       # Frontend entry point
+  - package.json      # Frontend dependencies and scripts
 
-<h1 align="center"> BACK-END </h1>
-
-### **📌 CONFIGURACIÓN ARCHIVO ".env"**
-
-```bash
-    DB_USER=usuarioDePostgres
-    DB_PASSWORD=passwordDePostgres
-    DB_HOST=localhost
-    API_KEY **sólo si tu proyecto lo necesita**
+- README.md           # Project documentation
 ```
 
-<br />
+## Implemented Functionalities
 
-### **📌 GENERAR LA BASE DE DATOS**
+### Displaying Dog Breed Data
+- The main page of the application displays cards with basic information about different dog breeds.
+- Dog breeds data is fetched from the backend via HTTP requests to "The Dogs API" and stored in the Redux global state.
 
--  Será necesario que crees, **desde psql (shell o PGAdmin)**, una la base de datos. Si no realizas este paso de manera manual no podrás avanzar con el proyecto.
+### Creating New Dog Breeds
+- The application allows users to create new dog breeds using a controlled form.
+- The form requests information such as breed name, age, weight, height, temperaments, and an image.
+- The created dog breeds are saved in the database.
 
--  Colócale el mísmo nombre que aparece en el archivo db.js. En el siguiente ejemplo, **`pi`** sería el nombre de la base de datos:
+### Filtering by Temperaments, Weight, and Height
+- Users can filter dog breeds by various temperaments, weight, and height.
+- The global state of Redux is used to store the selected filters and apply them in the visualization of dog breeds.
 
-   ```javascript
-   new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/pi`);
-   ```
+### Pagination
+- The application implements pagination to display dog breeds on different pages.
+- This allows for better organization and navigation of dog breeds, especially when there is a large amount of data.
 
-<br />
-
-#### 📌 Realizados estos pasos, en la línea de comandos debes posicionarte en la carpeta **`/api`**. Una vez allí, ya puedes ejecutar el comando **`npm start`**. Si el servidor está corriendo, deberías ver algo así:
-
-```bash
-[nodemon] starting `node index.js` %s listening at 3001
-```
-
-<br />
-
-<h1 align="center"> BASE DE DATOS </h1>
-
-### **📌 MODELOS**
-
--  Debemos generar el código para ambos modelos y tener en cuenta que en el [**README**](./README.md) nos especifica cuáles campos son obligatorios (lo que te ayudará a utilizar validaciones y restricciones en cada campo, de ser necesario).
-
-   > **[⚠️ IMPORTANTE ]**: busca la forma de generar un `ID` que no te traiga conflictos con los IDs que tienen los elementos traídos de la API. Existe, por ejemplo, el identificador único universal o UUID. Investiga sobre esto 😛.
-
--  Luego del paso anterior, debemos aplicar "_destructuring_" de los modelos en el archivo `db.js`. En este archivo encontrarás comentarios que te indican dónde hacerlo y un ejemplo de cómo hacerlo.
-
-<br />
-
-<div align="center" >
-<img src="./commentsExample.png" alt="" />
-</div>
-
-<br />
-
-> **[ NOTA ]**: en todos los Proyectos Individuales se plantea la necesidad de generar una relación de tipo N:N. Investiga en la documentación de [**sequelize**](https://sequelize.org/docs/v6/getting-started/) sobre cómo definirla en forma correcta.
-
-<br />
-
-### **📌 RUTAS**
-
--  Una vez realizados los modelos y las relaciones, podemos pensar en las rutas. Recuerda leer el [**README**](./README.md), donde se indica cuáles son las rutas necesarias, además de si son de tipo GET o POST, y si necesitan params o query params.
-
-   -  La ruta GET que retorna todos los resultados debe devolver sólo los datos necesarios para la ruta principal (tanto los mostrados en cada Card, como los necesarios para realizar los filtros y ordenamientos).
-   -  La ruta GET por ID utilizada para mostrar el detalle de cada elemento debe traer sólo los datos pedidos en la ruta de detalle (según lo indicado en el [**README**](./README.md)).
-
-> **[ NOTA ]**: recuerda que para usar librerías como `axios` deberás instalarlas previamente.
-
-<br />
-
-### **📌 TEST**
-
--  Luego de hacer cada ruta te conviene testearlas. Puedes utilizar algún cliente HTTP para realizar solicitudes como Postman, Insomnia o Thunder.
-
-<br />
-
-<h1 align="center"> FRONT-END </h1>
-
-### **📌 DISEÑO**
-
--  Intenta utilizar estilos uniformes en todo la SPA. Puedes buscar una [**paleta de colores**](https://coolors.co/) y mantenerla.
--  Es recomendable utilizar la misma fuente y el mismo tamaño de letra, botones con el mismo estilo y color para los que realizan la misma acción (por ejemplo, borrar).
--  No se permitirá utilizar librerías externas para aplicar estilos a la aplicación.
--  Los elementos deben estar centrados y estilizados.
--  La **Landing Page** debe tener alguna imagen de fondo representativa al proyecto y un botón que redirija a la Home Page.
-
-> [ **CONSEJO** ]: observa varios sitios web para ver la uniformidad en sus estilos.
-
-<br />
-
-### **📌 RUTAS**
-
--  Crea rutas para cada una de las vistas que necesites (Landing Page, Home Page, Detail Page, etc...)
-
-<br />
-
-### **📌 STORE**
-
--  Configura el store para tener tu fuente de verdad y poder usarla donde la necesites.
-
-<br />
-
-### **📌 HOME PAGE**
-
--  Aquí vas a renderizar los resultados obtenidos; cada uno en una card. Además, existen otros elementos necesarios:
-   -  **Paginado**: con la cantidad de elementos mencionados en el [**README**](./README.md)).
-   -  **Search**: buscar por algún criterio. Lee en el [**README**](./README.md) si la búsqueda debe ser exacta o no.
-   -  **Filtros**: los resultados deben estar paginados.
-   -  **Ordenamiento**: debe funcionar combinado con el/los filtro/s.
-
-<br />
-
-### **📌 DETAIL PAGE**
-
--  Se debe visualizar toda la información que se solicita en el [**README**](./README.md).
-
-<br />
-
-### **📌 FORM PAGE**
-
--  Utilizar validaciones JavaScript.
--  Utiliza las validaciones para que tu formulario sea reactivo y valide datos a medida que completas cada campo.
--  Confirma si el elemento se ha creado correctamente.
--  Si ocurre algún error en el backend debe comunicarlo a los usuarios de tu página.
--  Al finalizar la creación limpia los campos de tu formulario.
-
-<br />
-
-<h1 align="center"> PUNTOS EXTRA </h1>
-
-### **📌 TESTS**
-
--  Al menos tener un componente del frontend con sus tests respectivos.
--  Al menos tener dos ruta del backend con sus tests respectivos.
--  Al menos tener un modelo de la base de datos con sus tests respectivos.
-
-<br />
-
-### **📌 BUENAS PRÁCTICAS**
-
--  Utilizar código modularizado. Reutilizar componentes en el front-end. Usar helpers en el Back-end.
-
-<br />
-
-### **📌 EXTRA FEATURES**
-
--  Agregar funcionalidades extras, que no fueron solicitadas en el README.
+### Searching by Breed Name
+- Users can search for dog breeds by their name.
+- The global state of Redux is used to store the search term and apply it in the visualization of dog breeds.
