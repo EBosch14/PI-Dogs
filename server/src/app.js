@@ -20,7 +20,7 @@ app.use((req, res, next) => {
 app.use(
   fileUpload({
     useTempFiles: true,
-    tempFileDir: "/src/uploads/tmp/",
+    tempFileDir: "/tmp/",
   })
 );
 
