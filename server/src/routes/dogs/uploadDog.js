@@ -5,6 +5,9 @@ const uploadRouter = Router();
 
 uploadRouter.post("/", async (req, res) => {
   const info = req.body;
+  const {image} = req.files
+  info.image = image
+  console.log(info);
   try {
     const result = await postDog(info);
     res.status(201).json(result);

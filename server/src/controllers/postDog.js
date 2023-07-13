@@ -1,11 +1,14 @@
 const { createDogsDB } = require("../services/createDogsDB");
+const { uploadImage } = require("../uploads/cloudinary");
 const { validateInfo } = require("../utils/validateInfoDog");
 
 const postDog = async (info) => {
   try {
     const isValid = await validateInfo(info);
     if (isValid) {
-      const dog = await createDogsDB(info);
+      const imagePath = info.image.tempFilePath
+      const uploadedImage = await uploadImage(imagePath)
+      const dog = await createDogsDB({...info, image: uploadedImage.secure_url});
       return dog;
     }
   } catch (error) {
