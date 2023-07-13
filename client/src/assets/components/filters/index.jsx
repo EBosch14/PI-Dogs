@@ -37,7 +37,6 @@ export default function Filters() {
   const handleWhereFilterChange = (event) => {
     //API || DB || All
     const whereFrom = event.target.value;
-    console.log(whereFrom);
     dispatch(filterDogs({...filters, whereFrom}))
 
     setFilters((prevState) => ({

@@ -33,7 +33,7 @@ export default function CustomForm() {
   const [inputs, setInputs] = useState({
     name: "",
     lifeSpan: "",
-    image: "",
+    image: {},
     height: "",
     weight: "",
     temperaments: "",
@@ -47,7 +47,7 @@ export default function CustomForm() {
     setInputs({
       name: "",
       lifeSpan: "",
-      image: "",
+      image: {},
       height: "",
       weight: "",
       temperaments: "",
@@ -67,11 +67,12 @@ export default function CustomForm() {
 
   useEffect(() => {
     setErrors(validateForm(inputs, firstInputs, allDogs));
+    console.log(formComplete);
   }, [inputs]);
 
   useEffect(() => {
     setFormComplete(
-      Object.values(inputs).every((el) => el !== "") &&
+      Object.entries(inputs).every(([prop, value]) => value !== "") &&
         Object.keys(errors).length === 0,
     );
   }, [errors]);
@@ -83,6 +84,7 @@ export default function CustomForm() {
         const cleanInputs = {
           ...inputs,
           name: inputs.name.trim(),
+          image: inputs.image.file
         };
         const res = await uploadDog(cleanInputs);
         if (res) {
@@ -91,7 +93,6 @@ export default function CustomForm() {
           resetAllRef();
           alert("Your doggie was successfully created");
         }
-        console.log(res);
       } catch (error) {
         console.error(error);
       }
@@ -125,9 +126,10 @@ export default function CustomForm() {
     const fileType = file.type;
     if (fileType === "image/png" || fileType === "image/jpeg") {
       const fileURL = URL.createObjectURL(file);
+      const image = {file, fileURL}
       setInputs((prevState) => ({
         ...prevState,
-        image: fileURL,
+        image,
       }));
     } else {
       setErrors((prevState) => ({

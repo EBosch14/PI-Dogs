@@ -2,7 +2,6 @@ const numberPositive = /^\d*\.?\d+$/;
 const validName = /^[A-Za-z\s]+$/;
 
 export function validateForm(inputs, firstInputs, allDogs) {
-  console.log(allDogs);
   const errors = {};
   const alreadyExist = allDogs.find(
     (el) => el.name.toLowerCase() === inputs.name.toLowerCase().trim(),
@@ -55,8 +54,8 @@ export function validateForm(inputs, firstInputs, allDogs) {
 
   //Image validations
   if (firstInputs.current.image) {
-    firstInputs.current.image = inputs.image === "";
-  } else if (inputs.image === "") {
+    firstInputs.current.image = inputs.image === {};
+  } else if (inputs.image === {}) {
     errors.image = "This field is required.";
   }
 

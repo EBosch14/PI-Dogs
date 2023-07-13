@@ -13,7 +13,7 @@ export default function CustomImageUpload({
   const fileInputRef = useRef(null);
 
   const handleClick = () => {
-    inputs.image === "" && fileInputRef.current.click();
+    Object.keys(inputs.image).length === 0 && fileInputRef.current.click();
   };
 
   return (
@@ -24,7 +24,7 @@ export default function CustomImageUpload({
           <BsUpload />
         ) : (
           <img
-            src={inputs.image}
+            src={inputs.image.hasOwnProperty('fileURL') ? inputs.image.fileURL : ""}
             alt={inputs.name}
             className={s.selectedImage}
           />
@@ -39,7 +39,7 @@ export default function CustomImageUpload({
         onChange={onChange}
         hidden
       />
-      {inputs.image && (
+      {Object.keys(inputs.image).length !== 0 && (
         <button className={s.deleteImageBtn} onClick={deleteImage}>
           Delete image
         </button>

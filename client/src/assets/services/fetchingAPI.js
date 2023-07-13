@@ -1,10 +1,15 @@
 import axios from "axios";
 
-const { VITE_URL_API } = import.meta.env;
+const { VITE_URL_API, VITE_URL_API_LOCAL } = import.meta.env;
 
 async function uploadDog(data) {
   try {
-    const response = await axios.post(`${VITE_URL_API}/dogs/upload`, data);
+    const response = await axios.post(`${VITE_URL_API}/dogs/upload`, data, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+
     if (response.status !== 201) {
       throw new Error("Error uploading dog");
     }
