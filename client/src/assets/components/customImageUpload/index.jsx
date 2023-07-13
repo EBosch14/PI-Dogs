@@ -20,7 +20,7 @@ export default function CustomImageUpload({
     <div className={s[name]}>
       <label htmlFor="">{label}</label>
       <div className={s.uploadFile} onClick={handleClick}>
-        {!inputs.image ? (
+        {!inputs.image.hasOwnProperty('fileURL') ? (
           <BsUpload />
         ) : (
           <img
