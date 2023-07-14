@@ -14,8 +14,9 @@ export default function Navbar({
       </Link>
       <form action="" onSubmit={handleSumbit}>
         <div className={s.search}>
-          <label className={s.label}>Search a Dog:</label>
+          <label htmlFor="searchInput" className={s.label}>Search a Dog:</label>
           <input
+            id="searchInput"
             value={search}
             onChange={handleChange}
             type="text"

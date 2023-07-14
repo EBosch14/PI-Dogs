@@ -4,11 +4,13 @@ import Filters from "../../components/filters";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getDogs } from "../../redux/actions/payloads";
+import ScreenLoading from "../../components/screenLoading";
 
 export default function Home() {
   //Redux
   const dispatch = useDispatch();
   const allDogs = useSelector((state) => state.dogs.filterDogs);
+  // const allDogs = []
 
   useEffect(() => {
     dispatch(getDogs());
@@ -23,7 +25,7 @@ export default function Home() {
 
   useEffect(() => {
     if (currentPage > totalPages) setCurrentPage(1);
-    window.scrollTo(top)
+    window.scrollTo(top);
   }, [currentPage, totalPages]);
 
   const handlePage = (page) => {
@@ -35,18 +37,30 @@ export default function Home() {
       <div className={s.filters}>
         <Filters />
       </div>
-      <Cards allDogs={allDogs} currentPage={currentPage} pageSize={pageSize} />
-      <div className={s.pagesContainer}>
-        {pages.map((page) => (
-          <button
-            className={`${s.pageBtn} ${page === currentPage ? s.active : ""}`}
-            key={page}
-            onClick={() => handlePage(page)}
-          >
-            {page}
-          </button>
-        ))}
-      </div>
+      {allDogs?.length !== 0 ? (
+        <>
+          <Cards
+            allDogs={allDogs}
+            currentPage={currentPage}
+            pageSize={pageSize}
+          />
+          <div className={s.pagesContainer}>
+            {pages.map((page) => (
+              <button
+                className={`${s.pageBtn} ${
+                  page === currentPage ? s.active : ""
+                }`}
+                key={page}
+                onClick={() => handlePage(page)}
+              >
+                {page}
+              </button>
+            ))}
+          </div>
+        </>
+      ) : (
+        <ScreenLoading/>
+      )}
     </div>
   );
 }
