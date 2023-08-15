@@ -3,9 +3,9 @@ const transfromDataAPI = (data) => {
     const transformedData = data.map((breed) => ({
       ...breed,
       Temperaments: breed.temperament ? breed.temperament.split(", ") : [],
-      image: breed.image.url,
-      height: `${breed.height.metric} cm`,
-      weight: `${breed.weight.metric} kg`,
+      image: breed.image?.url,
+      height: `${breed.height?.metric} cm`,
+      weight: `${breed.weight?.metric} kg`,
       temperament: undefined,
       reference_image_id: undefined
     }));

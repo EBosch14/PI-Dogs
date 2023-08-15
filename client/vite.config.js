@@ -7,4 +7,8 @@ export default defineConfig({
   css: {
     modules: true,
   },
+  test: {
+    environment: "happy-dom",
+    globals: true,
+  },
 });

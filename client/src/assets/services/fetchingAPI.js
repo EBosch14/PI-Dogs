@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const { VITE_URL_API, VITE_URL_API_LOCAL } = import.meta.env;
+const { VITE_URL_API, VITE_URL_API_LOCAL, VITE_ENV } = import.meta.env;
+const URL_API = VITE_ENV === "DEV" ? VITE_URL_API_LOCAL : VITE_URL_API
 
 async function uploadDog(data) {
   const formData = new FormData();
@@ -12,7 +13,7 @@ async function uploadDog(data) {
   formData.append("temperaments", data.temperaments);
 
   try {
-    const response = await axios.post(`${VITE_URL_API}/dogs/upload`, formData);
+    const response = await axios.post(`${URL_API}/dogs/upload`, formData);
 
     if (response.status !== 201) {
       throw new Error("Error uploading dog");
@@ -27,7 +28,7 @@ async function uploadDog(data) {
 
 async function getDogByID(id) {
   try {
-    const response = await axios.get(`${VITE_URL_API}/dogs/breeds/${id}`);
+    const response = await axios.get(`${URL_API}/dogs/breeds/${id}`);
     return response.data;
   } catch (error) {
     console.error(error);
@@ -38,7 +39,7 @@ async function getDogByID(id) {
 async function searchDogs(search) {
   try {
     const response = await axios.get(
-      `${VITE_URL_API}/dogs/breeds?search=${search}`,
+      `${URL_API}/dogs/breeds?search=${search}`,
     );
     return response.data;
   } catch (error) {
@@ -48,7 +49,7 @@ async function searchDogs(search) {
 
 async function getAllDogs() {
   try {
-    const response = await axios.get(`${VITE_URL_API}/dogs/breeds`);
+    const response = await axios.get(`${URL_API}/dogs/breeds`);
     return response.data;
   } catch (error) {
     console.error(error);

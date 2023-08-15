@@ -6,8 +6,10 @@ const { API_URL } = process.env;
 const getAllBreedsAPI = async () => {
   //Gets all dog breeds registered in API
   try {
-    const response = await axios.get(`${API_URL}/breeds`);
+    console.log(API_URL);
+    const response = await axios.get(`https://api.thedogapi.com/v1/breeds`);
     const result = transfromDataAPI(response.data);
+    console.log(result);
     return result;
   } catch (error) {
     throw new Error(error.message);

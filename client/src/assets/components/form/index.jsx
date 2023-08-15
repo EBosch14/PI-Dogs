@@ -79,7 +79,7 @@ export default function CustomForm() {
 
   const handleSumbit = async (event) => {
     event.preventDefault();
-    if (setFormComplete) {
+    if (formComplete) {
       try {
         const cleanInputs = {
           ...inputs,
