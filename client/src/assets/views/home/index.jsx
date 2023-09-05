@@ -6,15 +6,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { getDogs } from "../../redux/actions/payloads";
 import ScreenLoading from "../../components/screenLoading";
 
-export default function Home() {
+export default function Home({ allDogs, isLoading }) {
   //Redux
-  const dispatch = useDispatch();
-  const allDogs = useSelector((state) => state.dogs.filterDogs);
-  // const allDogs = []
+  // const dispatch = useDispatch();
+  // const allDogs = useSelector((state) => state.dogs.filterDogs);
+  // // const allDogs = []
 
-  useEffect(() => {
-    dispatch(getDogs());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(getDogs());
+  // }, [dispatch]);
 
   //Pagination
   const [currentPage, setCurrentPage] = useState(1);
@@ -37,7 +37,9 @@ export default function Home() {
       <div className={s.filters}>
         <Filters />
       </div>
-      {allDogs?.length !== 0 ? (
+      {isLoading ? (
+        <ScreenLoading />
+      ) : allDogs?.length !== 0 ? (
         <>
           <Cards
             allDogs={allDogs}
@@ -59,7 +61,9 @@ export default function Home() {
           </div>
         </>
       ) : (
-        <ScreenLoading/>
+        <div className={s.errorMessage}>
+          <p>Cannot find the dogs :(</p>
+        </div>
       )}
     </div>
   );

@@ -7,9 +7,9 @@ import DetailPage from "./assets/views/detail";
 import CreatePage from "./assets/views/create";
 import FavoritesPage from "./assets/views/favorites";
 import NotFoundPage from "./assets/views/404";
-import { useRef, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { getDogByName, getDogs } from "./assets/redux/actions/payloads";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import OnlyDesktopPage from "./assets/views/onlyDesktop";
 import SocialWebs from "./assets/components/socialWebs";
 
@@ -17,28 +17,31 @@ function App() {
   //RouterDom
   const path = useLocation();
 
-  //Filters
+  //Redux
   const dispatch = useDispatch();
+  const allDogs = useSelector((state) => state.dogs.filterDogs);
   const [search, setSearch] = useState("");
-  const prevSearch = useRef(null);
+  const [isLoading, setIsLoading] = useState(true)
+
+  useEffect(() => {
+    dispatch(getDogs(setIsLoading));
+  }, []);
 
   const handleChange = (event) => {
     const input = event.target.value;
+    dispatch(getDogByName(input))
     setSearch(input);
   };
 
-  const handleSumbit = (event) => {
-    event.preventDefault();
-    if (search === prevSearch.current || search === "") return;
-    prevSearch.current = search;
+  useEffect(() => {
     dispatch(getDogByName(search));
-  };
+  },[search])
+
 
   const handleShowAll = (event) => {
+    event.preventDefault()
     if (search === "" && !prevSearch.current) return;
-    dispatch(getDogs());
     setSearch("");
-    prevSearch.current = null;
   };
 
   //Check device
@@ -70,15 +73,14 @@ function App() {
         <Navbar
           handleShowAll={handleShowAll}
           handleChange={handleChange}
-          handleSumbit={handleSumbit}
           search={search}
         />
       )}
       <Routes>
         <Route exact path="/" element={<LandigPage />} />
-        <Route exact path="/home" element={<HomePage />} />
+        <Route exact path="/home" element={<HomePage allDogs={allDogs} isLoading={isLoading}/>} />
         <Route exact path="/detail/:id" element={<DetailPage />} />
-        <Route exact path="/create" element={<CreatePage />} />
+        <Route exact path="/create" element={<CreatePage setIsLoading={setIsLoading}/>} />
         <Route exact path="/favorites" element={<FavoritesPage />} />
         <Route exact path="/error" element={<OnlyDesktopPage />} />
         <Route path="/*" element={<NotFoundPage />} />

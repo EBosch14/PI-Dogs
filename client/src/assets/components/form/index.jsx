@@ -8,14 +8,11 @@ import { uploadDog } from "../../services/fetchingAPI";
 import { useDispatch, useSelector } from "react-redux";
 import { getDogs } from "../../redux/actions/payloads";
 
-export default function CustomForm() {
+export default function CustomForm({setIsLoading}) {
   //Redux state
   const dispatch = useDispatch()
   const allDogs = useSelector(state => state.dogs.dogs)
 
-  useEffect(() => {
-    dispatch(getDogs())
-  }, [dispatch])
 
   //From Hooks
   const [selectedOptions, setSelectedOptions] = useState([]);
@@ -67,7 +64,6 @@ export default function CustomForm() {
 
   useEffect(() => {
     setErrors(validateForm(inputs, firstInputs, allDogs));
-    console.log(formComplete);
   }, [inputs]);
 
   useEffect(() => {
@@ -91,6 +87,7 @@ export default function CustomForm() {
           resetAllInputs();
           resetAllSelect();
           resetAllRef();
+          dispatch(getDogs(setIsLoading))
           alert("Your doggie was successfully created");
         }
       } catch (error) {

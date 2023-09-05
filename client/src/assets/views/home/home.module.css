@@ -38,3 +38,14 @@
   transform: scale(1.3);
   font-weight: 700;
 }
+
+.errorMessage{
+  align-self: center;
+}
+
+.errorMessage p {
+  font-size: 2em;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding-top: 10rem;
+}

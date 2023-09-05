@@ -10,12 +10,12 @@ import {
   getAllDogs,
   getAllTemps,
   getDogByID,
-  searchDogs,
 } from "../../services/fetchingAPI";
 
-export function getDogs() {
+export function getDogs(setIsLoading) {
   return async function (dispatch) {
     const dogs = await getAllDogs();
+    setIsLoading(false);
     return dispatch({
       type: GET_DOGS,
       payload: dogs,
@@ -25,10 +25,9 @@ export function getDogs() {
 
 export function getDogByName(name) {
   return async function (dispatch) {
-    const filteredDogs = await searchDogs(name);
     return dispatch({
       type: GET_BY_NAME,
-      payload: filteredDogs,
+      payload: name,
     });
   };
 }

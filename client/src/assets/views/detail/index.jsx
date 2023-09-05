@@ -60,9 +60,9 @@ export default function DetailPage() {
               <div className={s.bredFor}>
                 <div>
                   <GiDogHouse />
-                  <span>Bred for</span>{" "}
+                  <span>Origin</span>{" "}
                 </div>
-                <p>{dog.bred_for ? dog.bred_for : "Unknown"}</p>
+                <p>{dog.origin ? dog.origin : "Unknown"}</p>
               </div>
               <div className={s.temperaments}>
                 <div>

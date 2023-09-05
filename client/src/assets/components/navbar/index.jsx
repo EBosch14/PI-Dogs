@@ -4,7 +4,6 @@ import s from "./navbar.module.css";
 export default function Navbar({
   handleShowAll,
   handleChange,
-  handleSumbit,
   search,
 }) {
   return (
@@ -12,7 +11,7 @@ export default function Navbar({
       <Link className={s.link} to="/home">
         Go to Home
       </Link>
-      <form action="" onSubmit={handleSumbit}>
+      <form action="">
         <div className={s.search}>
           <label htmlFor="searchInput" className={s.label}>Search a Dog:</label>
           <input
@@ -23,9 +22,6 @@ export default function Navbar({
             className={s.input}
           />
           <div className={s.buttons}>
-            <button className={s.searchBtn} type="submit">
-              Go
-            </button>
             <button onClick={handleShowAll} className={s.showAllBtn}>
               All dogs
             </button>

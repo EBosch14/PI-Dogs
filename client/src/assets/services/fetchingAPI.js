@@ -36,16 +36,16 @@ async function getDogByID(id) {
   }
 }
 
-async function searchDogs(search) {
-  try {
-    const response = await axios.get(
-      `${URL_API}/dogs/breeds?search=${search}`,
-    );
-    return response.data;
-  } catch (error) {
-    throw new Error(`No matches for ${search}`);
-  }
-}
+// async function searchDogs(search) {
+//   try {
+//     const response = await axios.get(
+//       `${URL_API}/dogs/breeds?search=${search}`,
+//     );
+//     return response.data;
+//   } catch (error) {
+//     throw new Error(`No matches for ${search}`);
+//   }
+// }
 
 async function getAllDogs() {
   try {
@@ -59,7 +59,7 @@ async function getAllDogs() {
 
 async function getAllTemps() {
   try {
-    const response = await axios.get(`${VITE_URL_API}/temperaments`);
+    const response = await axios.get(`${URL_API}/temperaments`);
     return response.data;
   } catch (error) {
     console.error(error);
@@ -67,4 +67,4 @@ async function getAllTemps() {
   }
 }
 
-export { uploadDog, getDogByID, searchDogs, getAllDogs, getAllTemps };
+export { uploadDog, getDogByID, getAllDogs, getAllTemps };

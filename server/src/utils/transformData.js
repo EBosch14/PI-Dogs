@@ -1,25 +1,22 @@
-const transfromDataAPI = (data) => {
-  if (Array.isArray(data)) {
-    const transformedData = data.map((breed) => ({
-      ...breed,
-      Temperaments: breed.temperament ? breed.temperament.split(", ") : [],
-      image: breed.image?.url,
-      height: `${breed.height?.metric} cm`,
-      weight: `${breed.weight?.metric} kg`,
-      temperament: undefined,
-      reference_image_id: undefined
-    }));
-    return transformedData;
-  }
-  if (typeof data === "object" && Object.keys(data).length) {
-    return {
-      ...data,
-      Temperaments: data.temperament ? data.temperament.split(", ") : [],
-      temperament: undefined,
-      reference_image_id: undefined
-    };
-  }
-  return [];
+const { fetchImage } = require("./fetchingDataAPI");
+
+const cleanDataAPI = async (dogs) => {
+  return await Promise.all(
+    dogs.map(async (dog) => {
+      const image_url = await fetchImage(dog.reference_image_id);
+      return {
+        weight: `${dog.weight.metric} kg`,
+        height: `${dog.height.metric} cm`,
+        name: dog.name,
+        life_span: dog.life_span,
+        Temperaments: dog.temperament?.split(", ") ?? [],
+        origin: dog.origin ?? "",
+        image: image_url,
+        id: dog.id,
+      };
+    })
+  );
+  
 };
 
 const transformDataDB = (data) => {
@@ -40,4 +37,4 @@ const transformDataDB = (data) => {
   return [];
 };
 
-module.exports = { transfromDataAPI, transformDataDB };
+module.exports = { cleanDataAPI, transformDataDB };

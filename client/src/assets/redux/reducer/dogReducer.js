@@ -6,6 +6,7 @@ import {
   orderByAscWeight,
   orderByDescWeight,
   orderByZA,
+  filterByName
 } from "../../utils/filtersFunctions";
 import {
   CLEAR_INFO,
@@ -34,7 +35,7 @@ function dogReducer(state = initalState, action) {
     case GET_BY_NAME:
       return {
         ...state,
-        filterDogs: payload,
+        filterDogs: filterByName([...state.dogs], payload),
       };
 
     case GET_BY_ID:
